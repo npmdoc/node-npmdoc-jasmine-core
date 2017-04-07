@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"jasmine-core",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "jasmine-core",
+    "description": "api documentation for [jasmine-core (v2.5.2)](http://jasmine.github.io) [![npm package](https://img.shields.io/npm/v/npmdoc-jasmine-core.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-jasmine-core) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-jasmine-core.svg)](https://travis-ci.org/npmdoc/node-npmdoc-jasmine-core)",
     "devDependencies": {
-        "jasmine-core": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "jasmine-core": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-jasmine-core",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-jasmine-core",
+    "keywords": [
+        "documentation",
+        "jasmine-core"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_jasmine_core.js",
+    "name": "npmdoc-jasmine-core",
+    "nameAlias": "npmdoc_jasmine_core",
+    "nameOriginal": "npmdoc-jasmine-core",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-jasmine-core"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
