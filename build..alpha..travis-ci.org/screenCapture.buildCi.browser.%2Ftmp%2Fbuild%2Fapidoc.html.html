@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="http://jasmine.github.io"
-
-    >jasmine-core (v2.5.2)</a>
+    <a href="http://jasmine.github.io">jasmine-core (v2.5.2)</a>
 </h1>
 <h4>Official packaging of Jasmine's core files for use by Node.js projects.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.jasmine-core">module jasmine-core</a><ol>
 
@@ -1073,10 +1066,10 @@
     <li>description and source-code<pre class="apidocCodePre">Any = function (j$) {
 
   function Any(expectedObject) {
-    if (typeof expectedObject === &#x27;undefined&#x27;) {
+    if (typeof expectedObject === 'undefined') {
       throw new TypeError(
-        &#x27;jasmine.any() expects to be passed a constructor function. &#x27; +
-        &#x27;Please pass one or use jasmine.anything() to match any object.&#x27;
+        'jasmine.any() expects to be passed a constructor function. ' +
+        'Please pass one or use jasmine.anything() to match any object.'
       );
     }
     this.expectedObject = expectedObject;
@@ -1084,30 +1077,30 @@
 
   Any.prototype.asymmetricMatch = function(other) {
     if (this.expectedObject == String) {
-      return typeof other == &#x27;string&#x27; || other instanceof String;
+      return typeof other == 'string' || other instanceof String;
     }
 
     if (this.expectedObject == Number) {
-      return typeof other == &#x27;number&#x27; || other instanceof Number;
+      return typeof other == 'number' || other instanceof Number;
     }
 
     if (this.expectedObject == Function) {
-      return typeof other == &#x27;function&#x27; || other instanceof Function;
+      return typeof other == 'function' || other instanceof Function;
     }
 
     if (this.expectedObject == Object) {
-      return typeof other == &#x27;object&#x27;;
+      return typeof other == 'object';
     }
 
     if (this.expectedObject == Boolean) {
-      return typeof other == &#x27;boolean&#x27;;
+      return typeof other == 'boolean';
     }
 
     return other instanceof this.expectedObject;
   };
 
   Any.prototype.jasmineToString = function() {
-    return &#x27;&#x3c;jasmine.any(&#x27; + j$.fnNameFor(this.expectedObject) + &#x27;)&#x3e;&#x27;;
+    return '&lt;jasmine.any(' + j$.fnNameFor(this.expectedObject) + ')&gt;';
   };
 
   return Any;
@@ -1129,11 +1122,11 @@
   function Anything() {}
 
   Anything.prototype.asymmetricMatch = function(other) {
-    return !j$.util.isUndefined(other) &#x26;&#x26; other !== null;
+    return !j$.util.isUndefined(other) &amp;&amp; other !== null;
   };
 
   Anything.prototype.jasmineToString = function() {
-    return &#x27;&#x3c;jasmine.anything&#x3e;&#x27;;
+    return '&lt;jasmine.anything&gt;';
   };
 
   return Anything;
@@ -1157,9 +1150,9 @@
 
   ArrayContaining.prototype.asymmetricMatch = function(other) {
     var className = Object.prototype.toString.call(this.sample);
-    if (className !== &#x27;[object Array]&#x27;) { throw new Error(&#x27;You must provide an array to arrayContaining, not \&#x27;&#x27; + this.sample + &#x27;\&#x27;.&#x27;); }
+    if (className !== '[object Array]') { throw new Error('You must provide an array to arrayContaining, not \'' + this.sample + '\'.'); }
 
-    for (var i = 0; i &#x3c; this.sample.length; i++) {
+    for (var i = 0; i &lt; this.sample.length; i++) {
       var item = this.sample[i];
       if (!j$.matchersUtil.contains(other, item)) {
         return false;
@@ -1170,7 +1163,7 @@
   };
 
   ArrayContaining.prototype.jasmineToString = function () {
-    return &#x27;&#x3c;jasmine.arrayContaining(&#x27; + jasmine.pp(this.sample) +&#x27;)&#x3e;&#x27;;
+    return '&lt;jasmine.arrayContaining(' + jasmine.pp(this.sample) +')&gt;';
   };
 
   return ArrayContaining;
@@ -1196,7 +1189,7 @@
     function argCloner(context) {
       var clonedArgs = [];
       var argsAsArray = j$.util.argsToArray(context.args);
-      for(var i = 0; i &#x3c; argsAsArray.length; i++) {
+      for(var i = 0; i &lt; argsAsArray.length; i++) {
         if(Object.prototype.toString.apply(argsAsArray[i]).match(/^\[object/)) {
           clonedArgs.push(j$.util.clone(argsAsArray[i]));
         } else {
@@ -1232,7 +1225,7 @@
 
     this.allArgs = function() {
       var callArgs = [];
-      for(var i = 0; i &#x3c; calls.length; i++){
+      for(var i = 0; i &lt; calls.length; i++){
         callArgs.push(calls[i].args);
       }
 
@@ -1293,7 +1286,7 @@
 
     self.install = function() {
       if(!originalTimingFunctionsIntact()) {
-        throw new Error(&#x27;Jasmine Clock was unable to install over custom global timer functions. Is the clock already installed?&#x27;);
+        throw new Error('Jasmine Clock was unable to install over custom global timer functions. Is the clock already installed?');
       }
       replace(global, fakeTimingFunctions);
       timer = fakeTimingFunctions;
@@ -1327,8 +1320,8 @@
 
     self.setTimeout = function(fn, delay, params) {
       if (legacyIE()) {
-        if (arguments.length &#x3e; 2) {
-          throw new Error(&#x27;IE &#x3c; 9 cannot support extra params to setTimeout without a polyfill&#x27;);
+        if (arguments.length &gt; 2) {
+          throw new Error('IE &lt; 9 cannot support extra params to setTimeout without a polyfill');
         }
         return timer.setTimeout(fn, delay);
       }
@@ -1337,8 +1330,8 @@
 
     self.setInterval = function(fn, delay, params) {
       if (legacyIE()) {
-        if (arguments.length &#x3e; 2) {
-          throw new Error(&#x27;IE &#x3c; 9 cannot support extra params to setInterval without a polyfill&#x27;);
+        if (arguments.length &gt; 2) {
+          throw new Error('IE &lt; 9 cannot support extra params to setInterval without a polyfill');
         }
         return timer.setInterval(fn, delay);
       }
@@ -1357,16 +1350,16 @@
       if (installed) {
         delayedFunctionScheduler.tick(millis, function(millis) { mockDate.tick(millis); });
       } else {
-        throw new Error(&#x27;Mock clock is not installed, use jasmine.clock().install()&#x27;);
+        throw new Error('Mock clock is not installed, use jasmine.clock().install()');
       }
     };
 
     return self;
 
     function originalTimingFunctionsIntact() {
-      return global.setTimeout === realTimingFunctions.setTimeout &#x26;&#x26;
-        global.clearTimeout === realTimingFunctions.clearTimeout &#x26;&#x26;
-        global.setInterval === realTimingFunctions.setInterval &#x26;&#x26;
+      return global.setTimeout === realTimingFunctions.setTimeout &amp;&amp;
+        global.clearTimeout === realTimingFunctions.clearTimeout &amp;&amp;
+        global.setInterval === realTimingFunctions.setInterval &amp;&amp;
         global.clearInterval === realTimingFunctions.clearInterval;
     }
 
@@ -1434,7 +1427,7 @@
 
     self.scheduleFunction = function(funcToCall, millis, params, recurring, timeoutKey, runAtMillis) {
       var f;
-      if (typeof(funcToCall) === &#x27;string&#x27;) {
+      if (typeof(funcToCall) === 'string') {
 <span class="apidocCodeCommentSpan">        /* jshint evil: true */
 </span>        f = function() { return eval(funcToCall); };
         /* jshint evil: false */
@@ -1475,7 +1468,7 @@
           return func.timeoutKey === timeoutKey;
         });
 
-        if (i &#x3e; -1) {
+        if (i &gt; -1) {
           if (funcs.length === 1) {
             delete scheduledFunctions[runAtMillis];
             deleteFromLookup(runAtMillis);
@@ -1483,7 +1476,7 @@
             funcs.splice(i, 1);
           }
 
-          // intervals get rescheduled when executed, so there&#x27;s never more
+          // intervals get rescheduled when executed, so there's never more
           // than a single scheduled function with a given timeoutKey
           break;
         }
@@ -1495,7 +1488,7 @@
     function indexOfFirstToPass(array, testFn) {
       var index = -1;
 
-      for (var i = 0; i &#x3c; array.length; ++i) {
+      for (var i = 0; i &lt; array.length; ++i) {
         if (testFn(array[i])) {
           index = i;
           break;
@@ -1511,7 +1504,7 @@
         return millis === value;
       });
 
-      if (i &#x3e; -1) {
+      if (i &gt; -1) {
         scheduledLookup.splice(i, 1);
       }
     }
@@ -1526,14 +1519,14 @@
     }
 
     function forEachFunction(funcsToRun, callback) {
-      for (var i = 0; i &#x3c; funcsToRun.length; ++i) {
+      for (var i = 0; i &lt; funcsToRun.length; ++i) {
         callback(funcsToRun[i]);
       }
     }
 
     function runScheduledFunctions(endTime, tickDate) {
       tickDate = tickDate || function() {};
-      if (scheduledLookup.length === 0 || scheduledLookup[0] &#x3e; endTime) {
+      if (scheduledLookup.length === 0 || scheduledLookup[0] &gt; endTime) {
         tickDate(endTime - currentTime);
         return;
       }
@@ -1556,11 +1549,11 @@
         forEachFunction(funcsToRun, function(funcToRun) {
           funcToRun.funcToCall.apply(null, funcToRun.params || []);
         });
-      } while (scheduledLookup.length &#x3e; 0 &#x26;&#x26;
-              // checking first if we&#x27;re out of time prevents setTimeout(0)
+      } while (scheduledLookup.length &gt; 0 &amp;&amp;
+              // checking first if we're out of time prevents setTimeout(0)
               // scheduled in a funcToRun from forcing an extra iteration
-                 currentTime !== endTime  &#x26;&#x26;
-                 scheduledLookup[0] &#x3c;= endT ...</pre></li>
+                 currentTime !== endTime  &amp;&amp;
+                 scheduledLookup[0] &lt;= endT ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -1606,12 +1599,12 @@
     };
 
     var reporter = new j$.ReportDispatcher([
-      &#x27;jasmineStarted&#x27;,
-      &#x27;jasmineDone&#x27;,
-      &#x27;suiteStarted&#x27;,
-      &#x27;suiteDone&#x27;,
-      &#x27;specStarted&#x27;,
-      &#x27;specDone&#x27;
+      'jasmineStarted',
+      'jasmineDone',
+      'suiteStarted',
+      'suiteDone',
+      'specStarted',
+      'specDone'
     ]);
 
     this.specFilter = function() {
@@ -1620,14 +1613,14 @@
 
     this.addCustomEqualityTester = function(tester) {
       if(!currentRunnable()) {
-        throw new Error(&#x27;Custom Equalities must be added in a before function or a spec&#x27;);
+        throw new Error('Custom Equalities must be added in a before function or a spec');
       }
       runnableResources[currentRunnable().id].customEqualityTesters.push(tester);
     };
 
     this.addMatchers = function(matchersToAdd) {
       if(!currentRunnable()) {
-        throw new Error(&#x27;Matchers must be added in a before function or a spec&#x27;);
+        throw new Error('Matchers must be added in a before function or a spec');
       }
       var customMatchers = runnableResources[currentRunnable().id].customMatchers;
       for (var matcherName in matchersToAdd) {
@@ -1639,12 +1632,12 @@
 
     var nextSpecId = 0;
     var getNextSpecId = function() {
-      return &#x27;spec&#x27; + nextSpecId++;
+      return 'spec' + nextSpecId++;
     };
 
     var nextSuiteId = 0;
     var getNextSuiteId = function() {
-      return &#x27;suite&#x27; + nextSuiteId++;
+      return 'suite' + nextSuiteId++;
     };
 
     var expectationFactory = function(actual, spec) {
@@ -1700,10 +1693,10 @@
       var fullName = [spec.description],
           suiteFullName = suite.getFullName();
 
-      if (suiteFullName !== &#x27;&#x27;) {
+      if (suiteFullName !== '') {
         fullName.unshift(suiteFullName);
       }
-      return fullName.join(&#x27; &#x27;);
+      return fullName.join(' ');
     };
 
     // TODO: we may just be able to pass in the fn instead of wrapping here
@@ -1726,20 +1719,20 @@
     <li>description and source-code<pre class="apidocCodePre">ExceptionFormatter = function () {
   function ExceptionFormatter() {
     this.message = function(error) {
-      var message = &#x27;&#x27;;
+      var message = '';
 
-      if (error.name &#x26;&#x26; error.message) {
-        message += error.name + &#x27;: &#x27; + error.message;
+      if (error.name &amp;&amp; error.message) {
+        message += error.name + ': ' + error.message;
       } else {
-        message += error.toString() + &#x27; thrown&#x27;;
+        message += error.toString() + ' thrown';
       }
 
       if (error.fileName || error.sourceURL) {
-        message += &#x27; in &#x27; + (error.fileName || error.sourceURL);
+        message += ' in ' + (error.fileName || error.sourceURL);
       }
 
       if (error.line || error.lineNumber) {
-        message += &#x27; (line &#x27; + (error.line || error.lineNumber) + &#x27;)&#x27;;
+        message += ' (line ' + (error.line || error.lineNumber) + ')';
       }
 
       return message;
@@ -1783,7 +1776,7 @@
     return function() {
       var args = Array.prototype.slice.call(arguments, 0),
         expected = args.slice(0),
-        message = &#x27;&#x27;;
+        message = '';
 
       args.unshift(this.actual);
 
@@ -1808,7 +1801,7 @@
           args.unshift(name);
           message = this.util.buildFailureMessage.apply(null, args);
         } else {
-          if (Object.prototype.toString.apply(result.message) === &#x27;[object Function]&#x27;) {
+          if (Object.prototype.toString.apply(result.message) === '[object Function]') {
             message = result.message();
           } else {
             message = result.message;
@@ -1878,7 +1871,7 @@
 
   function JsApiReporter(options) {
     var timer = options.timer || noopTimer,
-        status = &#x27;loaded&#x27;;
+        status = 'loaded';
 
     this.started = false;
     this.finished = false;
@@ -1886,7 +1879,7 @@
 
     this.jasmineStarted = function() {
       this.started = true;
-      status = &#x27;started&#x27;;
+      status = 'started';
       timer.start();
     };
 
@@ -1896,7 +1889,7 @@
       this.finished = true;
       this.runDetails = runDetails;
       executionTime = timer.elapsed();
-      status = &#x27;done&#x27;;
+      status = 'done';
     };
 
     this.status = function() {
@@ -2030,7 +2023,7 @@
         if (GlobalDate.now) {
           return currentTime;
         } else {
-          throw new Error(&#x27;Browser does not support Date.now()&#x27;);
+          throw new Error('Browser does not support Date.now()');
         }
       };
 
@@ -2086,8 +2079,8 @@
   }
 
   ObjectContaining.prototype.asymmetricMatch = function(other) {
-    if (typeof(this.sample) !== &#x27;object&#x27;) { throw new Error(&#x27;You must provide an object to objectContaining, not \&#x27;&#x27;+this.sample
-+&#x27;\&#x27;.&#x27;); }
+    if (typeof(this.sample) !== 'object') { throw new Error('You must provide an object to objectContaining, not \''+this.sample
++'\'.'); }
 
     for (var property in this.sample) {
       if (!hasProperty(other, property) ||
@@ -2100,7 +2093,7 @@
   };
 
   ObjectContaining.prototype.jasmineToString = function() {
-    return &#x27;&#x3c;jasmine.objectContaining(&#x27; + j$.pp(this.sample) + &#x27;)&#x3e;&#x27;;
+    return '&lt;jasmine.objectContaining(' + j$.pp(this.sample) + ')&gt;';
   };
 
   return ObjectContaining;
@@ -2119,7 +2112,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Order = function () {
   function Order(options) {
-    this.random = &#x27;random&#x27; in options ? options.random : true;
+    this.random = 'random' in options ? options.random : true;
     var seed = this.seed = options.seed || generateSeed();
     this.sort = this.random ? randomOrder : naturalOrder;
 
@@ -2146,14 +2139,14 @@
 
     function jenkinsHash(key) {
       var hash, i;
-      for(hash = i = 0; i &#x3c; key.length; ++i) {
+      for(hash = i = 0; i &lt; key.length; ++i) {
         hash += key.charCodeAt(i);
-        hash += (hash &#x3c;&#x3c; 10);
-        hash ^= (hash &#x3e;&#x3e; 6);
+        hash += (hash &lt;&lt; 10);
+        hash ^= (hash &gt;&gt; 6);
       }
-      hash += (hash &#x3c;&#x3c; 3);
-      hash ^= (hash &#x3e;&#x3e; 11);
-      hash += (hash &#x3c;&#x3c; 15);
+      hash += (hash &lt;&lt; 3);
+      hash ^= (hash &gt;&gt; 11);
+      hash += (hash &lt;&lt; 15);
       return hash;
     }
 
@@ -2207,9 +2200,9 @@
       iterativeIndex;
 
 
-    for(iterativeIndex = recursiveIndex; iterativeIndex &#x3c; length; iterativeIndex++) {
+    for(iterativeIndex = recursiveIndex; iterativeIndex &lt; length; iterativeIndex++) {
       var queueableFn = queueableFns[iterativeIndex];
-      if (queueableFn.fn.length &#x3e; 0) {
+      if (queueableFn.fn.length &gt; 0) {
         attemptAsync(queueableFn);
         return;
       } else {
@@ -2217,7 +2210,7 @@
       }
     }
 
-    var runnerDone = iterativeIndex &#x3e;= length;
+    var runnerDone = iterativeIndex &gt;= length;
 
     if (runnerDone) {
       this.clearStack(this.onComplete);
@@ -2248,8 +2241,8 @@
 
       if (queueableFn.timeout) {
         timeoutId = Function.prototype.apply.apply(self.timeout.setTimeout, [j$.getGlobal(), [function() {
-          var error = new Error(&#x27;Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL
-.&#x27;);
+          var error = new Error('Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL
+.');
           onException(error);
           next();
         }, queueableFn.timeout()]]);
@@ -2296,7 +2289,7 @@
 
     var dispatchedMethods = methods || [];
 
-    for (var i = 0; i &#x3c; dispatchedMethods.length; i++) {
+    for (var i = 0; i &lt; dispatchedMethods.length; i++) {
       var method = dispatchedMethods[i];
       this[method] = (function(m) {
         return function() {
@@ -2323,10 +2316,10 @@
     return this;
 
     function dispatch(method, args) {
-      if (reporters.length === 0 &#x26;&#x26; fallbackReporter !== null) {
+      if (reporters.length === 0 &amp;&amp; fallbackReporter !== null) {
           reporters.push(fallbackReporter);
       }
-      for (var i = 0; i &#x3c; reporters.length; i++) {
+      for (var i = 0; i &lt; reporters.length; i++) {
         var reporter = reporters[i];
         if (reporter[method]) {
           reporter[method].apply(reporter, args);
@@ -2354,12 +2347,12 @@
     this.expectationFactory = attrs.expectationFactory;
     this.resultCallback = attrs.resultCallback || function() {};
     this.id = attrs.id;
-    this.description = attrs.description || &#x27;&#x27;;
+    this.description = attrs.description || '';
     this.queueableFn = attrs.queueableFn;
     this.beforeAndAfterFns = attrs.beforeAndAfterFns || function() { return {befores: [], afters: []}; };
     this.userContext = attrs.userContext || function() { return {}; };
     this.onStart = attrs.onStart || function() {};
-    this.getSpecName = attrs.getSpecName || function() { return &#x27;&#x27;; };
+    this.getSpecName = attrs.getSpecName || function() { return ''; };
     this.expectationResultFactory = attrs.expectationResultFactory || function() { };
     this.queueRunnerFactory = attrs.queueRunnerFactory || function() {};
     this.catchingExceptions = attrs.catchingExceptions || function() { return true; };
@@ -2375,7 +2368,7 @@
       fullName: this.getFullName(),
       failedExpectations: [],
       passedExpectations: [],
-      pendingReason: &#x27;&#x27;
+      pendingReason: ''
     };
   }
 
@@ -2386,7 +2379,7 @@
     } else {
       this.result.failedExpectations.push(expectationResult);
 
-      if (this.throwOnExpectationFailure &#x26;&#x26; !isError) {
+      if (this.throwOnExpectationFailure &amp;&amp; !isError) {
         throw new j$.errors.ExpectationFailed();
       }
     }
@@ -2437,10 +2430,10 @@
     }
 
     this.addExpectationResult(false, {
-      matcherName: &#x27;&#x27;,
+      matcherName: '',
       passed: false,
-      expected: &#x27;&#x27;,
-      actual: &#x27;&#x27;,
+      expected: '',
+      actual: '',
       error: e
     }, true);
   };
@@ -2463,17 +2456,17 @@
 
   Spec.prototype.status = function(enabled) {
     if (this.disabled || enabled === false) {
-      return &#x27;disabled&#x27;;
+      return 'disabled';
     }
 
     if (this.markedPending) {
-      return &#x27;pending&#x27;;
+      return 'pending';
     }
 
-    if (this.result.failedExpectations.length &#x3e; 0) {
-      return &#x27;failed&#x27;;
+    if (this.result.failedExpectations.length &gt; 0) {
+      return 'failed';
     } else {
-      return &#x27;passed&#x27;;
+      return 'passed';
     }
   };
 
@@ -2493,10 +2486,10 @@
     return fullMessage.substr(boilerplateEnd);
   };
 
-  Spec.pendingSpecExceptionMessage = &#x27;=&#x3e; marked Pending&#x27;;
+  Spec.pendingSpecExceptionMessage = '=&gt; marked Pending';
 
   Spec.isPendingSpecException = function(e) {
-    return !!(e &#x26;&#x26; e.toString &#x26;&#x26; e.toString().inde ...</pre></li>
+    return !!(e &amp;&amp; e.toString &amp;&amp; e.toString().inde ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -2511,7 +2504,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">SpyRegistry = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;spyOn&#x3e;&#x27;, &#x27;spyOn(&#x3c;object&#x3e;, &#x3c;methodName&#x3e;)&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;spyOn&gt;', 'spyOn(&lt;object&gt;, &lt;methodName&gt;)');
 
   function SpyRegistry(options) {
     options = options || {};
@@ -2524,22 +2517,22 @@
     this.spyOn = function(obj, methodName) {
 
       if (j$.util.isUndefined(obj)) {
-        throw new Error(getErrorMsg(&#x27;could not find an object to spy upon for &#x27; + methodName + &#x27;()&#x27;));
+        throw new Error(getErrorMsg('could not find an object to spy upon for ' + methodName + '()'));
       }
 
       if (j$.util.isUndefined(methodName)) {
-        throw new Error(getErrorMsg(&#x27;No method name supplied&#x27;));
+        throw new Error(getErrorMsg('No method name supplied'));
       }
 
       if (j$.util.isUndefined(obj[methodName])) {
-        throw new Error(getErrorMsg(methodName + &#x27;() method does not exist&#x27;));
+        throw new Error(getErrorMsg(methodName + '() method does not exist'));
       }
 
-      if (obj[methodName] &#x26;&#x26; j$.isSpy(obj[methodName])  ) {
+      if (obj[methodName] &amp;&amp; j$.isSpy(obj[methodName])  ) {
         if ( !!this.respy ){
           return obj[methodName];
         }else {
-          throw new Error(getErrorMsg(methodName + &#x27; has already been spied upon&#x27;));
+          throw new Error(getErrorMsg(methodName + ' has already been spied upon'));
         }
       }
 
@@ -2547,11 +2540,11 @@
       try {
         descriptor = Object.getOwnPropertyDescriptor(obj, methodName);
       } catch(e) {
-        // IE 8 doesn&#x27;t support `definePropery` on non-DOM nodes
+        // IE 8 doesn't support `definePropery` on non-DOM nodes
       }
 
-      if (descriptor &#x26;&#x26; !(descriptor.writable || descriptor.set)) {
-        throw new Error(getErrorMsg(methodName + &#x27; is not declared writable or has no setter&#x27;));
+      if (descriptor &amp;&amp; !(descriptor.writable || descriptor.set)) {
+        throw new Error(getErrorMsg(methodName + ' is not declared writable or has no setter'));
       }
 
       var originalMethod = obj[methodName],
@@ -2581,7 +2574,7 @@
 
     this.clearSpies = function() {
       var spies = currentSpies();
-      for (var i = spies.length - 1; i &#x3e;= 0; i--) {
+      for (var i = spies.length - 1; i &gt;= 0; i--) {
         var spyEntry = spies[i];
         spyEntry.restoreObjectToOriginalState();
       }
@@ -2607,7 +2600,7 @@
   function SpyStrategy(options) {
     options = options || {};
 
-    var identity = options.name || &#x27;unknown&#x27;,
+    var identity = options.name || 'unknown',
         originalFn = options.fn || function() {},
         getSpy = options.getSpy || function() {},
         plan = function() {};
@@ -2650,7 +2643,7 @@
 
     this.callFake = function(fn) {
       if(!j$.isFunction_(fn)) {
-        throw new Error(&#x27;Argument passed to callFake should be a function, got &#x27; + fn);
+        throw new Error('Argument passed to callFake should be a function, got ' + fn);
       }
       plan = fn;
       return getSpy();
@@ -2679,8 +2672,8 @@
     <li>description and source-code<pre class="apidocCodePre">StringMatching = function (j$) {
 
   function StringMatching(expected) {
-    if (!j$.isString_(expected) &#x26;&#x26; !j$.isA_(&#x27;RegExp&#x27;, expected)) {
-      throw new Error(&#x27;Expected is not a String or a RegExp&#x27;);
+    if (!j$.isString_(expected) &amp;&amp; !j$.isA_('RegExp', expected)) {
+      throw new Error('Expected is not a String or a RegExp');
     }
 
     this.regexp = new RegExp(expected);
@@ -2691,7 +2684,7 @@
   };
 
   StringMatching.prototype.jasmineToString = function() {
-    return &#x27;&#x3c;jasmine.stringMatching(&#x27; + this.regexp + &#x27;)&#x3e;&#x27;;
+    return '&lt;jasmine.stringMatching(' + this.regexp + ')&gt;';
   };
 
   return StringMatching;
@@ -2745,7 +2738,7 @@
         fullName.unshift(parentSuite.description);
       }
     }
-    return fullName.join(&#x27; &#x27;);
+    return fullName.join(' ');
   };
 
   Suite.prototype.disable = function() {
@@ -2778,17 +2771,17 @@
 
   Suite.prototype.status = function() {
     if (this.disabled) {
-      return &#x27;disabled&#x27;;
+      return 'disabled';
     }
 
     if (this.markedPending) {
-      return &#x27;pending&#x27;;
+      return 'pending';
     }
 
-    if (this.result.failedExpectations.length &#x3e; 0) {
-      return &#x27;failed&#x27;;
+    if (this.result.failedExpectations.length &gt; 0) {
+      return 'failed';
     } else {
-      return &#x27;finished&#x27;;
+      return 'finished';
     }
   };
 
@@ -2797,7 +2790,7 @@
   };
 
   Suite.prototype.canBeReentered = function() {
-    return this.beforeAllFns.length === 0 &#x26;&#x26; this.afterAllFns.length === 0;
+    return this.beforeAllFns.length === 0 &amp;&amp; this.afterAllFns.length === 0;
   };
 
   Suite.prototype.getResult = function() {
@@ -2824,15 +2817,15 @@
 
     if(isAfterAll(this.children)) {
       var data = {
-        matcherName: &#x27;&#x27;,
+        matcherName: '',
         passed: false,
-        expected: &#x27;&#x27;,
-        actual: &#x27;&#x27;,
+        expected: '',
+        actual: '',
         error: arguments[0]
       };
       this.result.failedExpectations.push(this.expectationResultFactory(data));
     } else {
-      for (var i = 0; i &#x3c; this.children.length; i++) {
+      for (var i = 0; i &lt; this.children.length; i++) {
         var child = this.children[i];
         child.onException.apply(child, arguments);
       }
@@ -2840,14 +2833,14 @@
   };
 
   Suite.prototype.addExpectationResult = function () {
-    if(isAfterAll(this.children) &#x26;&#x26; isFailure(arguments)){
+    if(isAfterAll(this.children) &amp;&amp; isFailure(arguments)){
       var data = arguments[1];
       this.result.failedExpectations.push(this.expectationResultFactory(data));
       if(this.throwOnExpectationFailure) {
         throw new j$.errors.ExpectationFailed();
       }
     } else {
-      for (var i = 0; i &#x3c; this.children.length; i++) {
+      for (var i = 0; i &lt; this.children.length; i++) {
         var child = this.children[i];
         try {
           child.addExpectationResult.apply(child, arguments);
@@ -2859,7 +2852,7 @@
   };
 
   function isAfterAll(children) {
-    return children &#x26;&#x26; children[0].result.status;
+    return children &amp;&amp; children[0].result.status;
   }
 
   function isFailure(args) {
@@ -2950,7 +2943,7 @@
       }
 
       if (!stats.valid) {
-        throw &#x27;invalid order&#x27;;
+        throw 'invalid order';
       }
 
       var childFns = wrapChildren(tree, 0);
@@ -2966,7 +2959,7 @@
     };
 
     function runnableIndex(id) {
-      for (var i = 0; i &#x3c; runnableIds.length; i++) {
+      for (var i = 0; i &lt; runnableIds.length; i++) {
         if (runnableIds[i] === id) {
           return i;
         }
@@ -2980,11 +2973,11 @@
         parentEnabled = true;
       }
 
-      parentEnabled = parentEnabled &#x26;&#x26; node.isExecutable();
+      parentEnabled = parentEnabled &amp;&amp; node.isExecutable();
 
       if (!node.children) {
         stats[node.id] = {
-          executable: parentEnabled &#x26;&#x26; node.isExecutable(),
+          executable: parentEnabled &amp;&amp; node.isExecutable(),
           segments: [{
             index: 0,
             owner: node,
@@ -2998,7 +2991,7 @@
 
         var orderedChildren = orderChildren(node);
 
-        for (var i = 0; i &#x3c; orderedChildren.length; i++) {
+        for (var i = 0; i &lt; orderedChildren.length; i++) {
           var child = orderedChildren[i];
 
           processNode(child, parentEnabled);
@@ -3018,7 +3011,7 @@
 
         segmentChildren(node, orderedChildren, stats[node.id], executableIndex);
 
-        if (!node.canBeReentered() &#x26;&#x26; stats[node.id].segments.length &#x3e; 1) {
+        if (!node.canBeReentered() &amp;&amp; stats[node.id].segments.length &gt; 1) {
           stats = { valid: false };
         }
       }
@@ -3040,10 +3033,10 @@
           orderedChildSegments = orderChildSegments(orderedChildren);
 
       function isSegmentBoundary(minIndex) {
-        return lastMax !== defaultMax &#x26;&#x26; minIndex !== defaultMin &#x26;&#x26; lastMax &#x3c; minIndex - 1;
+        return lastMax !== defaultMax &amp;&amp; minIndex !== defaultMin &amp;&amp; lastMax &lt; minIndex - 1;
       }
 
-      for (var i = 0; i &#x3c; orderedChildSegments.length; i++) {
+      for (var i = 0; i &lt; orderedChildSegments.length; i++) {
         var childSegment = orderedChildSegments[i],
           maxIndex = childSegment.max,
           minIndex = childSegment.min;
@@ -3079,7 +3072,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">base = function (j$, jasmineGlobal) {
   j$.unimplementedMethod_ = function() {
-    throw new Error(&#x27;unimplemented method&#x27;);
+    throw new Error('unimplemented method');
   };
 
   j$.MAX_PRETTY_PRINT_DEPTH = 40;
@@ -3097,27 +3090,27 @@
   };
 
   j$.isArray_ = function(value) {
-    return j$.isA_(&#x27;Array&#x27;, value);
+    return j$.isA_('Array', value);
   };
 
   j$.isString_ = function(value) {
-    return j$.isA_(&#x27;String&#x27;, value);
+    return j$.isA_('String', value);
   };
 
   j$.isNumber_ = function(value) {
-    return j$.isA_(&#x27;Number&#x27;, value);
+    return j$.isA_('Number', value);
   };
 
   j$.isFunction_ = function(value) {
-    return j$.isA_(&#x27;Function&#x27;, value);
+    return j$.isA_('Function', value);
   };
 
   j$.isA_ = function(typeName, value) {
-    return Object.prototype.toString.apply(value) === &#x27;[object &#x27; + typeName + &#x27;]&#x27;;
+    return Object.prototype.toString.apply(value) === '[object ' + typeName + ']';
   };
 
   j$.isDomNode = function(obj) {
-    return obj.nodeType &#x3e; 0;
+    return obj.nodeType &gt; 0;
   };
 
   j$.fnNameFor = function(func) {
@@ -3126,7 +3119,7 @@
     }
 
     var matches = func.toString().match(/^\s*function\s*(\w*)\s*\(/);
-    return matches ? matches[1] : &#x27;&#x3c;anonymous&#x3e;&#x27;;
+    return matches ? matches[1] : '&lt;anonymous&gt;';
   };
 
   j$.any = function(clazz) {
@@ -3171,8 +3164,8 @@
       };
 
     for (var prop in originalFn) {
-      if (prop === &#x27;and&#x27; || prop === &#x27;calls&#x27;) {
-        throw new Error(&#x27;Jasmine spies would overwrite the \&#x27;and\&#x27; and \&#x27;calls\&#x27; properties on the object being spied upon&#x27;);
+      if (prop === 'and' || prop === 'calls') {
+        throw new Error('Jasmine spies would overwrite the \'and\' and \'calls\' properties on the object being spied upon');
       }
 
       spy[prop] = originalFn[prop];
@@ -3188,22 +3181,22 @@
     if (!putativeSpy) {
       return false;
     }
-    return putativeSpy.and instanceof j$.SpyStrategy &#x26;&#x26;
+    return putativeSpy.and instanceof j$.SpyStrategy &amp;&amp;
       putativeSpy.calls instanceof j$.CallTracker;
   };
 
   j$.createSpyObj = function(baseName, methodNames) {
-    if (j$.isArray_(baseName) &#x26;&#x26; j$.util.isUndefined(methodNames)) {
+    if (j$.isArray_(baseName) &amp;&amp; j$.util.isUndefined(methodNames)) {
       methodNames = baseName;
-      baseName = &#x27;unknown&#x27;;
+      baseName = 'unknown';
     }
 
     if (!j$.isArray_(methodNames) || methodNames.length === 0) {
-      throw &#x27;createSpyObj requires a non-empty array of method names to create spies for&#x27;;
+      throw 'createSpyObj requires a non-empty array of method names to create spies for';
     }
     var obj = {};
-    for (var i = 0; i &#x3c; methodNames.length; i++) {
-      obj[methodNames[i]] = j$.createSpy(baseName + &#x27;.&#x27; + methodNames[i]);
+    for (var i = 0; i &lt; methodNames.length; i++) {
+      obj[methodNames[i]] = j$.createSpy(baseName + '.' + methodNames[i]);
     }
     return obj;
   };
@@ -3223,7 +3216,7 @@
     <li>description and source-code<pre class="apidocCodePre">boot = function (jasmineRequire) {
   var jasmine = jasmineRequire.core(jasmineRequire);
 
-  var consoleFns = require(&#x27;../console/console.js&#x27;);
+  var consoleFns = require('../console/console.js');
   consoleFns.console(consoleFns, jasmine);
 
   var env = jasmine.getEnv();
@@ -3272,18 +3265,18 @@
 
     function message() {
       if (options.passed) {
-        return &#x27;Passed.&#x27;;
+        return 'Passed.';
       } else if (options.message) {
         return options.message;
       } else if (options.error) {
         return messageFormatter(options.error);
       }
-      return &#x27;&#x27;;
+      return '';
     }
 
     function stack() {
       if (options.passed) {
-        return &#x27;&#x27;;
+        return '';
       }
 
       var error = options.error;
@@ -3386,10 +3379,10 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">formatErrorMsg = function () {
   function generateErrorMsg(domain, usage) {
-    var usageDefinition = usage ? &#x27;\nUsage: &#x27; + usage : &#x27;&#x27;;
+    var usageDefinition = usage ? '\nUsage: ' + usage : '';
 
     return function errorMsg(msg) {
-      return domain + &#x27; : &#x27; + msg + usageDefinition;
+      return domain + ' : ' + msg + usageDefinition;
     };
   }
 
@@ -3511,10 +3504,10 @@
     contains: function(haystack, needle, customTesters) {
       customTesters = customTesters || [];
 
-      if ((Object.prototype.toString.apply(haystack) === &#x27;[object Array]&#x27;) ||
-        (!!haystack &#x26;&#x26; !haystack.indexOf))
+      if ((Object.prototype.toString.apply(haystack) === '[object Array]') ||
+        (!!haystack &amp;&amp; !haystack.indexOf))
       {
-        for (var i = 0; i &#x3c; haystack.length; i++) {
+        for (var i = 0; i &lt; haystack.length; i++) {
           if (eq(haystack[i], needle, [], [], customTesters)) {
             return true;
           }
@@ -3522,7 +3515,7 @@
         return false;
       }
 
-      return !!haystack &#x26;&#x26; haystack.indexOf(needle) &#x3e;= 0;
+      return !!haystack &amp;&amp; haystack.indexOf(needle) &gt;= 0;
     },
 
     buildFailureMessage: function() {
@@ -3531,35 +3524,35 @@
         isNot = args[1],
         actual = args[2],
         expected = args.slice(3),
-        englishyPredicate = matcherName.replace(/[A-Z]/g, function(s) { return &#x27; &#x27; + s.toLowerCase(); });
+        englishyPredicate = matcherName.replace(/[A-Z]/g, function(s) { return ' ' + s.toLowerCase(); });
 
-      var message = &#x27;Expected &#x27; +
+      var message = 'Expected ' +
         j$.pp(actual) +
-        (isNot ? &#x27; not &#x27; : &#x27; &#x27;) +
+        (isNot ? ' not ' : ' ') +
         englishyPredicate;
 
-      if (expected.length &#x3e; 0) {
-        for (var i = 0; i &#x3c; expected.length; i++) {
-          if (i &#x3e; 0) {
-            message += &#x27;,&#x27;;
+      if (expected.length &gt; 0) {
+        for (var i = 0; i &lt; expected.length; i++) {
+          if (i &gt; 0) {
+            message += ',';
           }
-          message += &#x27; &#x27; + j$.pp(expected[i]);
+          message += ' ' + j$.pp(expected[i]);
         }
       }
 
-      return message + &#x27;.&#x27;;
+      return message + '.';
     }
   };
 
   function isAsymmetric(obj) {
-    return obj &#x26;&#x26; j$.isA_(&#x27;Function&#x27;, obj.asymmetricMatch);
+    return obj &amp;&amp; j$.isA_('Function', obj.asymmetricMatch);
   }
 
   function asymmetricMatch(a, b) {
     var asymmetricA = isAsymmetric(a),
         asymmetricB = isAsymmetric(b);
 
-    if (asymmetricA &#x26;&#x26; asymmetricB) {
+    if (asymmetricA &amp;&amp; asymmetricB) {
       return undefined;
     }
 
@@ -3582,18 +3575,18 @@
       return asymmetricResult;
     }
 
-    for (var i = 0; i &#x3c; customTesters.length; i++) {
+    for (var i = 0; i &lt; customTesters.length; i++) {
       var customTesterResult = customTesters[i](a, b);
       if (!j$.util.isUndefined(customTesterResult)) {
         return customTesterResult;
       }
     }
 
-    if (a instanceof Error &#x26;&#x26; b instanceof Error) {
+    if (a instanceof Error &amp;&amp; b instanceof Error) {
       return a.message == b.message;
     }
 
-    // Identical objects are equal. `0 === -0`, but they aren&#x27;t identical.
+    // Identical objects are equal. `0 === -0`, but they aren't identical.
     // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
     if (a === b) { return a !== 0 || 1 / a == 1 / b; }
     // A strict comparison is necessary because `null == undefined`.
@@ -3602,28 +3595,28 @@
     if (className != Object.prototype.toString.call(b)) { return false; }
     switch (className) {
       // Strings, numbers, dates, and booleans are compared by value.
-      case &#x27;[object String]&#x27;:
-        // Primitives and their corresponding object wrappers are equivalent; thus, `&#x22;5&#x22;` is
-        // equivalent to `new String(&#x22;5&#x22;)`.
+      case '[object String]':
+        // Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is
+        // equivalent to `new String("5")`.
         return a == String(b);
-      case &#x27;[object Number]&#x27;:
+      case '[object Number]':
         // `NaN`s are equivalent, but non-reflexive. An `egal` comparison is performed for
         // other numeric values.
         return a != +a ? b != +b : (a === 0 ? 1 / a == 1 / b : a == +b);
-      case &#x27;[object Date]&#x27;:
-      case &#x27;[object Boolean]&#x27;:
+      case '[object Date]':
+      case '[object Boolean]':
         // Coerce dates and booleans to numeric primitive values. Dates are compared by their
         // millisecond representations. Note that invalid dates with millisecond representations
         // of `NaN` are not equivalent.
         return +a == +b;
       // RegExps are compared by their source patterns and flags.
-      case &#x27;[object RegExp]&#x27;:
-        return a.source == b.source &#x26;&#x26;
-          a.global == b.global &#x26;&#x26;
-          a.multiline == b.multiline &#x26;&#x26;
+      case '[object RegExp]':
+        return a.source == b.source &amp;&amp;
+          a.global == b.global &amp;&amp;
+          a.multiline == b.multiline &amp;&amp;
           a.ignoreCase == b.ignoreCase;
     }
-    if (typeof a != &#x27;object&#x27; || typeo ...</pre></li>
+    if (typeof a != 'object' || typeo ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -3647,33 +3640,33 @@
     this.ppNestLevel_++;
     try {
       if (j$.util.isUndefined(value)) {
-        this.emitScalar(&#x27;undefined&#x27;);
+        this.emitScalar('undefined');
       } else if (value === null) {
-        this.emitScalar(&#x27;null&#x27;);
-      } else if (value === 0 &#x26;&#x26; 1/value === -Infinity) {
-        this.emitScalar(&#x27;-0&#x27;);
+        this.emitScalar('null');
+      } else if (value === 0 &amp;&amp; 1/value === -Infinity) {
+        this.emitScalar('-0');
       } else if (value === j$.getGlobal()) {
-        this.emitScalar(&#x27;&#x3c;global&#x3e;&#x27;);
+        this.emitScalar('&lt;global&gt;');
       } else if (value.jasmineToString) {
         this.emitScalar(value.jasmineToString());
-      } else if (typeof value === &#x27;string&#x27;) {
+      } else if (typeof value === 'string') {
         this.emitString(value);
       } else if (j$.isSpy(value)) {
-        this.emitScalar(&#x27;spy on &#x27; + value.and.identity());
+        this.emitScalar('spy on ' + value.and.identity());
       } else if (value instanceof RegExp) {
         this.emitScalar(value.toString());
-      } else if (typeof value === &#x27;function&#x27;) {
-        this.emitScalar(&#x27;Function&#x27;);
-      } else if (typeof value.nodeType === &#x27;number&#x27;) {
-        this.emitScalar(&#x27;HTMLNode&#x27;);
+      } else if (typeof value === 'function') {
+        this.emitScalar('Function');
+      } else if (typeof value.nodeType === 'number') {
+        this.emitScalar('HTMLNode');
       } else if (value instanceof Date) {
-        this.emitScalar(&#x27;Date(&#x27; + value + &#x27;)&#x27;);
-      } else if (value.toString &#x26;&#x26; typeof value === &#x27;object&#x27; &#x26;&#x26; !(value instanceof Array) &#x26;&#x26; value.toString !== Object.prototype
+        this.emitScalar('Date(' + value + ')');
+      } else if (value.toString &amp;&amp; typeof value === 'object' &amp;&amp; !(value instanceof Array) &amp;&amp; value.toString !== Object.prototype
 .toString) {
         this.emitScalar(value.toString());
       } else if (j$.util.arrayContains(this.seen, value)) {
-        this.emitScalar(&#x27;&#x3c;circular reference: &#x27; + (j$.isArray_(value) ? &#x27;Array&#x27; : &#x27;Object&#x27;) + &#x27;&#x3e;&#x27;);
-      } else if (j$.isArray_(value) || j$.isA_(&#x27;Object&#x27;, value)) {
+        this.emitScalar('&lt;circular reference: ' + (j$.isArray_(value) ? 'Array' : 'Object') + '&gt;');
+      } else if (j$.isArray_(value) || j$.isA_('Object', value)) {
         this.seen.push(value);
         if (j$.isArray_(value)) {
           this.emitArray(value);
@@ -3692,7 +3685,7 @@
   PrettyPrinter.prototype.iterateObject = function(obj, fn) {
     for (var property in obj) {
       if (!Object.prototype.hasOwnProperty.call(obj, property)) { continue; }
-      fn(property, obj.__lookupGetter__ ? (!j$.util.isUndefined(obj.__lookupGetter__(property)) &#x26;&#x26;
+      fn(property, obj.__lookupGetter__ ? (!j$.util.isUndefined(obj.__lookupGetter__(property)) &amp;&amp;
           obj.__lookupGetter__(property) !== null) : false);
     }
   };
@@ -3705,7 +3698,7 @@
   function StringPrettyPrinter() {
     PrettyPrinter.call(this);
 
-    this.string = &#x27;&#x27;;
+    this.string = '';
   }
 
   j$.util.inherit(StringPrettyPrinter, PrettyPrinter);
@@ -3715,24 +3708,24 @@
   };
 
   StringPrettyPrinter.prototype.emitString = function(value) {
-    this.append(&#x27;\&#x27;&#x27; + value + &#x27;\&#x27;&#x27;);
+    this.append('\'' + value + '\'');
   };
 
   StringPrettyPrinter.prototype.emitArray = function(array) {
-    if (this.ppNestLevel_ &#x3e; j$.MAX_PRETTY_PRINT_DEPTH) {
-      this.append(&#x27;Array&#x27;);
+    if (this.ppNestLevel_ &gt; j$.MAX_PRETTY_PRINT_DEPTH) {
+      this.append('Array');
       return;
     }
     var length = Math.min(array.length, j$.MAX_PRETTY_PRINT_ARRAY_LENGTH);
-    this.append(&#x27;[ &#x27;);
-    for (var i = 0; i &#x3c; length; i++) {
-      if (i &#x3e; 0) {
-        this.append(&#x27;, &#x27;);
+    this.append('[ ');
+    for (var i = 0; i &lt; length; i++) {
+      if (i &gt; 0) {
+        this.append(', ');
       }
       this.format(array[i]);
     }
-    if(array.length &#x3e; length){
-      this.append(&#x27;, ...&#x27;);
+    if(array.length &gt; length){
+      this.append(', ...');
     }
 
     var self = this;
@@ -3745,32 +3738,32 @@
       if (first) {
         first = false;
       } else {
-        self.append(&#x27;, &#x27;);
+        self.append(', ');
       }
 
       self.formatProperty(array, property, isGetter);
     });
 
-    this.append(&#x27; ]&#x27;);
+    this.append(' ]');
   };
 
   StringPrettyPrinter.prototype.emitObject = function(obj) {
-    var constructorName = obj.constructor ? j$.fnNameFor(obj.constructor) : &#x27;null&#x27;;
+    var constructorName = obj.constructor ? j$.fnNameFor(obj.constructor) : 'null';
     this.append(constructorName);
 
-    if (this.ppNestLevel_ &#x3e; j$.MAX_PRETTY_PRINT_DEPTH) {
+    if (this.ppNestLevel_ &gt; j$.MAX_PRETTY_PRINT_DEPTH) {
       return;
     }
 
     var self = this;
-    this.append(&#x27;({ &#x27;);
+    this.append('({ ');
     var first = true;
 
     this.iterateObject(obj, function(property, isGetter) {
       if (first) {
         first = false;
       } else {
-        self.append(&#x27;, &#x27;);
+        self.append(', ');
       }
 
       s ...</pre></li>
@@ -3788,30 +3781,30 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">requireMatchers = function (jRequire, j$) {
   var availableMatchers = [
-      &#x27;toBe&#x27;,
-      &#x27;toBeCloseTo&#x27;,
-      &#x27;toBeDefined&#x27;,
-      &#x27;toBeFalsy&#x27;,
-      &#x27;toBeGreaterThan&#x27;,
-      &#x27;toBeGreaterThanOrEqual&#x27;,
-      &#x27;toBeLessThanOrEqual&#x27;,
-      &#x27;toBeLessThan&#x27;,
-      &#x27;toBeNaN&#x27;,
-      &#x27;toBeNull&#x27;,
-      &#x27;toBeTruthy&#x27;,
-      &#x27;toBeUndefined&#x27;,
-      &#x27;toContain&#x27;,
-      &#x27;toEqual&#x27;,
-      &#x27;toHaveBeenCalled&#x27;,
-      &#x27;toHaveBeenCalledWith&#x27;,
-      &#x27;toHaveBeenCalledTimes&#x27;,
-      &#x27;toMatch&#x27;,
-      &#x27;toThrow&#x27;,
-      &#x27;toThrowError&#x27;
+      'toBe',
+      'toBeCloseTo',
+      'toBeDefined',
+      'toBeFalsy',
+      'toBeGreaterThan',
+      'toBeGreaterThanOrEqual',
+      'toBeLessThanOrEqual',
+      'toBeLessThan',
+      'toBeNaN',
+      'toBeNull',
+      'toBeTruthy',
+      'toBeUndefined',
+      'toContain',
+      'toEqual',
+      'toHaveBeenCalled',
+      'toHaveBeenCalledWith',
+      'toHaveBeenCalledTimes',
+      'toMatch',
+      'toThrow',
+      'toThrowError'
     ],
     matchers = {};
 
-  for (var i = 0; i &#x3c; availableMatchers.length; i++) {
+  for (var i = 0; i &lt; availableMatchers.length; i++) {
     var name = availableMatchers[i];
     matchers[name] = jRequire[name](j$);
   }
@@ -3865,7 +3858,7 @@
         }
 
         return {
-          pass: Math.abs(expected - actual) &#x3c; (Math.pow(10, -precision) / 2)
+          pass: Math.abs(expected - actual) &lt; (Math.pow(10, -precision) / 2)
         };
       }
     };
@@ -3941,7 +3934,7 @@
     return {
       compare: function(actual, expected) {
         return {
-          pass: actual &#x3e; expected
+          pass: actual &gt; expected
         };
       }
     };
@@ -3967,7 +3960,7 @@
     return {
       compare: function(actual, expected) {
         return {
-          pass: actual &#x3e;= expected
+          pass: actual &gt;= expected
         };
       }
     };
@@ -3993,7 +3986,7 @@
 
       compare: function(actual, expected) {
         return {
-          pass: actual &#x3c; expected
+          pass: actual &lt; expected
         };
       }
     };
@@ -4019,7 +4012,7 @@
 
       compare: function(actual, expected) {
         return {
-          pass: actual &#x3c;= expected
+          pass: actual &lt;= expected
         };
       }
     };
@@ -4049,9 +4042,9 @@
         };
 
         if (result.pass) {
-          result.message = &#x27;Expected actual not to be NaN.&#x27;;
+          result.message = 'Expected actual not to be NaN.';
         } else {
-          result.message = function() { return &#x27;Expected &#x27; + j$.pp(actual) + &#x27; to be NaN.&#x27;; };
+          result.message = function() { return 'Expected ' + j$.pp(actual) + ' to be NaN.'; };
         }
 
         return result;
@@ -4213,7 +4206,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toHaveBeenCalled = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toHaveBeenCalled&#x3e;&#x27;, &#x27;expect(&#x3c;spyObj&#x3e;).toHaveBeenCalled()&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toHaveBeenCalled&gt;', 'expect(&lt;spyObj&gt;).toHaveBeenCalled()');
 
   function toHaveBeenCalled() {
     return {
@@ -4221,18 +4214,18 @@
         var result = {};
 
         if (!j$.isSpy(actual)) {
-          throw new Error(getErrorMsg(&#x27;Expected a spy, but got &#x27; + j$.pp(actual) + &#x27;.&#x27;));
+          throw new Error(getErrorMsg('Expected a spy, but got ' + j$.pp(actual) + '.'));
         }
 
-        if (arguments.length &#x3e; 1) {
-          throw new Error(getErrorMsg(&#x27;Does not take arguments, use toHaveBeenCalledWith&#x27;));
+        if (arguments.length &gt; 1) {
+          throw new Error(getErrorMsg('Does not take arguments, use toHaveBeenCalledWith'));
         }
 
         result.pass = actual.calls.any();
 
         result.message = result.pass ?
-          &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; not to have been called.&#x27; :
-          &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; to have been called.&#x27;;
+          'Expected spy ' + actual.and.identity() + ' not to have been called.' :
+          'Expected spy ' + actual.and.identity() + ' to have been called.';
 
         return result;
       }
@@ -4255,31 +4248,31 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toHaveBeenCalledTimes = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toHaveBeenCalledTimes&#x3e;&#x27;, &#x27;expect(&#x3c;spyObj&#x3e;).toHaveBeenCalledTimes(&#x3c;Number&#x3e;)&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toHaveBeenCalledTimes&gt;', 'expect(&lt;spyObj&gt;).toHaveBeenCalledTimes(&lt;Number&gt;)');
 
   function toHaveBeenCalledTimes() {
     return {
       compare: function(actual, expected) {
         if (!j$.isSpy(actual)) {
-          throw new Error(getErrorMsg(&#x27;Expected a spy, but got &#x27; + j$.pp(actual) + &#x27;.&#x27;));
+          throw new Error(getErrorMsg('Expected a spy, but got ' + j$.pp(actual) + '.'));
         }
 
         var args = Array.prototype.slice.call(arguments, 0),
           result = { pass: false };
 
         if (!j$.isNumber_(expected)){
-          throw new Error(getErrorMsg(&#x27;The expected times failed is a required argument and must be a number.&#x27;));
+          throw new Error(getErrorMsg('The expected times failed is a required argument and must be a number.'));
         }
 
         actual = args[0];
         var calls = actual.calls.count();
-        var timesMessage = expected === 1 ? &#x27;once&#x27; : expected + &#x27; times&#x27;;
+        var timesMessage = expected === 1 ? 'once' : expected + ' times';
         result.pass = calls === expected;
         result.message = result.pass ?
-          &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; not to have been called &#x27; + timesMessage + &#x27;. It was called &#x27; +  calls + &#x27;
-times.&#x27; :
-          &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; to have been called &#x27; + timesMessage + &#x27;. It was called &#x27; +  calls + &#x27; times
-.&#x27;;
+          'Expected spy ' + actual.and.identity() + ' not to have been called ' + timesMessage + '. It was called ' +  calls + '
+times.' :
+          'Expected spy ' + actual.and.identity() + ' to have been called ' + timesMessage + '. It was called ' +  calls + ' times
+.';
         return result;
       }
     };
@@ -4301,7 +4294,7 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toHaveBeenCalledWith = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toHaveBeenCalledWith&#x3e;&#x27;, &#x27;expect(&#x3c;spyObj&#x3e;).toHaveBeenCalledWith(...arguments)&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toHaveBeenCalledWith&gt;', 'expect(&lt;spyObj&gt;).toHaveBeenCalledWith(...arguments)');
 
   function toHaveBeenCalledWith(util, customEqualityTesters) {
     return {
@@ -4312,22 +4305,22 @@ times.&#x27; :
           result = { pass: false };
 
         if (!j$.isSpy(actual)) {
-          throw new Error(getErrorMsg(&#x27;Expected a spy, but got &#x27; + j$.pp(actual) + &#x27;.&#x27;));
+          throw new Error(getErrorMsg('Expected a spy, but got ' + j$.pp(actual) + '.'));
         }
 
         if (!actual.calls.any()) {
-          result.message = function() { return &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; to have been called with &#x27; + j$.pp(expectedArgs
-) + &#x27; but it was never called.&#x27;; };
+          result.message = function() { return 'Expected spy ' + actual.and.identity() + ' to have been called with ' + j$.pp(expectedArgs
+) + ' but it was never called.'; };
           return result;
         }
 
         if (util.contains(actual.calls.allArgs(), expectedArgs, customEqualityTesters)) {
           result.pass = true;
-          result.message = function() { return &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; not to have been called with &#x27; + j$.pp
-(expectedArgs) + &#x27; but it was.&#x27;; };
+          result.message = function() { return 'Expected spy ' + actual.and.identity() + ' not to have been called with ' + j$.pp
+(expectedArgs) + ' but it was.'; };
         } else {
-          result.message = function() { return &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; to have been called with &#x27; + j$.pp(expectedArgs
-) + &#x27; but actual calls were &#x27; + j$.pp(actual.calls.allArgs()).replace(/^\[ | \]$/g, &#x27;&#x27;) + &#x27;.&#x27;; };
+          result.message = function() { return 'Expected spy ' + actual.and.identity() + ' to have been called with ' + j$.pp(expectedArgs
+) + ' but actual calls were ' + j$.pp(actual.calls.allArgs()).replace(/^\[ | \]$/g, '') + '.'; };
         }
 
         return result;
@@ -4351,13 +4344,13 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toMatch = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toMatch&#x3e;&#x27;, &#x27;expect(&#x3c;expectation&#x3e;).toMatch(&#x3c;string&#x3e; || &#x3c;regexp&#x3e;)&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toMatch&gt;', 'expect(&lt;expectation&gt;).toMatch(&lt;string&gt; || &lt;regexp&gt;)');
 
   function toMatch() {
     return {
       compare: function(actual, expected) {
-        if (!j$.isString_(expected) &#x26;&#x26; !j$.isA_(&#x27;RegExp&#x27;, expected)) {
-          throw new Error(getErrorMsg(&#x27;Expected is not a String or a RegExp&#x27;));
+        if (!j$.isString_(expected) &amp;&amp; !j$.isA_('RegExp', expected)) {
+          throw new Error(getErrorMsg('Expected is not a String or a RegExp'));
         }
 
         var regexp = new RegExp(expected);
@@ -4385,7 +4378,7 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toThrow = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toThrow&#x3e;&#x27;, &#x27;expect(function() {&#x3c;expectation&#x3e;}).toThrow()&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toThrow&gt;', 'expect(function() {&lt;expectation&gt;}).toThrow()');
 
   function toThrow(util) {
     return {
@@ -4394,8 +4387,8 @@ times.&#x27; :
           threw = false,
           thrown;
 
-        if (typeof actual != &#x27;function&#x27;) {
-          throw new Error(getErrorMsg(&#x27;Actual is not a Function&#x27;));
+        if (typeof actual != 'function') {
+          throw new Error(getErrorMsg('Actual is not a Function'));
         }
 
         try {
@@ -4406,23 +4399,23 @@ times.&#x27; :
         }
 
         if (!threw) {
-          result.message = &#x27;Expected function to throw an exception.&#x27;;
+          result.message = 'Expected function to throw an exception.';
           return result;
         }
 
         if (arguments.length == 1) {
           result.pass = true;
-          result.message = function() { return &#x27;Expected function not to throw, but it threw &#x27; + j$.pp(thrown) + &#x27;.&#x27;; };
+          result.message = function() { return 'Expected function not to throw, but it threw ' + j$.pp(thrown) + '.'; };
 
           return result;
         }
 
         if (util.equals(thrown, expected)) {
           result.pass = true;
-          result.message = function() { return &#x27;Expected function not to throw &#x27; + j$.pp(expected) + &#x27;.&#x27;; };
+          result.message = function() { return 'Expected function not to throw ' + j$.pp(expected) + '.'; };
         } else {
-          result.message = function() { return &#x27;Expected function to throw &#x27; + j$.pp(expected) + &#x27;, but it threw &#x27; +  j$.pp(thrown
-) + &#x27;.&#x27;; };
+          result.message = function() { return 'Expected function to throw ' + j$.pp(expected) + ', but it threw ' +  j$.pp(thrown
+) + '.'; };
         }
 
         return result;
@@ -4446,8 +4439,8 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toThrowError = function (j$) {
 
-  var getErrorMsg =  j$.formatErrorMsg(&#x27;&#x3c;toThrowError&#x3e;&#x27;, &#x27;expect(function() {&#x3c;expectation&#x3e;}).toThrowError(&#x3c;ErrorConstructor&#x3e;, &#x3c;message
-&#x3e;)&#x27;);
+  var getErrorMsg =  j$.formatErrorMsg('&lt;toThrowError&gt;', 'expect(function() {&lt;expectation&gt;}).toThrowError(&lt;ErrorConstructor&gt;, &lt;message
+&gt;)');
 
   function toThrowError () {
     return {
@@ -4457,8 +4450,8 @@ times.&#x27; :
           fail = {pass: false},
           thrown;
 
-        if (typeof actual != &#x27;function&#x27;) {
-          throw new Error(getErrorMsg(&#x27;Actual is not a Function&#x27;));
+        if (typeof actual != 'function') {
+          throw new Error(getErrorMsg('Actual is not a Function'));
         }
 
         var errorMatcher = getMatcher.apply(null, arguments);
@@ -4471,29 +4464,29 @@ times.&#x27; :
         }
 
         if (!threw) {
-          fail.message = &#x27;Expected function to throw an Error.&#x27;;
+          fail.message = 'Expected function to throw an Error.';
           return fail;
         }
 
         if (!(thrown instanceof Error)) {
-          fail.message = function() { return &#x27;Expected function to throw an Error, but it threw &#x27; + j$.pp(thrown) + &#x27;.&#x27;; };
+          fail.message = function() { return 'Expected function to throw an Error, but it threw ' + j$.pp(thrown) + '.'; };
           return fail;
         }
 
         if (errorMatcher.hasNoSpecifics()) {
-          pass.message = &#x27;Expected function not to throw an Error, but it threw &#x27; + j$.fnNameFor(thrown) + &#x27;.&#x27;;
+          pass.message = 'Expected function not to throw an Error, but it threw ' + j$.fnNameFor(thrown) + '.';
           return pass;
         }
 
         if (errorMatcher.matches(thrown)) {
           pass.message = function() {
-            return &#x27;Expected function not to throw &#x27; + errorMatcher.errorTypeDescription + errorMatcher.messageDescription() + &#x27;.&#x27;;
+            return 'Expected function not to throw ' + errorMatcher.errorTypeDescription + errorMatcher.messageDescription() + '.';
           };
           return pass;
         } else {
           fail.message = function() {
-            return &#x27;Expected function to throw &#x27; + errorMatcher.errorTypeDescription + errorMatcher.messageDescription() +
-              &#x27;, but it threw &#x27; + errorMatcher.thrownDescription(thrown) + &#x27;.&#x27;;
+            return 'Expected function to throw ' + errorMatcher.errorTypeDescription + errorMatcher.messageDescription() +
+              ', but it threw ' + errorMatcher.thrownDescription(thrown) + '.';
           };
           return fail;
         }
@@ -4510,24 +4503,24 @@ times.&#x27; :
           errorType = expected;
           expected = null;
         }
-      } else if (arguments.length &#x3e; 2) {
+      } else if (arguments.length &gt; 2) {
         errorType = arguments[1];
         expected = arguments[2];
         if (!isAnErrorType(errorType)) {
-          throw new Error(getErrorMsg(&#x27;Expected error type is not an Error.&#x27;));
+          throw new Error(getErrorMsg('Expected error type is not an Error.'));
         }
       }
 
-      if (expected &#x26;&#x26; !isStringOrRegExp(expected)) {
+      if (expected &amp;&amp; !isStringOrRegExp(expected)) {
         if (errorType) {
-          throw new Error(getErrorMsg(&#x27;Expected error message is not a string or RegExp.&#x27;));
+          throw new Error(getErrorMsg('Expected error message is not a string or RegExp.'));
         } else {
-          throw new Error(getErrorMsg(&#x27;Expected is not an Error, string, or RegExp.&#x27;));
+          throw new Error(getErrorMsg('Expected is not an Error, string, or RegExp.'));
         }
       }
 
       function messageMatch(message) {
-        if (typeof expected == &#x27;string&#x27;) {
+        if (typeof expected == 'string') {
           return expected == message;
         } else {
           return expected.test(message);
@@ -4535,42 +4528,42 @@ times.&#x27; :
       }
 
       return {
-        errorTypeDescription: errorType ? j$.fnNameFor(errorType) : &#x27;an exception&#x27;,
+        errorTypeDescription: errorType ? j$.fnNameFor(errorType) : 'an exception',
         thrownDescription: function(thrown) {
-          var thrownName = errorType ? j$.fnNameFor(thrown.constructor) : &#x27;an exception&#x27;,
-              thrownMessage = &#x27;&#x27;;
+          var thrownName = errorType ? j$.fnNameFor(thrown.constructor) : 'an exception',
+              thrownMessage = '';
 
           if (expected) {
-            thrownMessage = &#x27; with message &#x27; + j$.pp(thrown.message);
+            thrownMessage = ' with message ' + j$.pp(thrown.message);
           }
 
           return thrownName + thrownMessage;
         },
         messageDescription: function() {
           if (expected === null) {
-            return &#x27;&#x27;;
+            return '';
           } else if (expected instanceof RegExp) {
-            return &#x27; with a message matching &#x27; + j$.pp(expected);
+            return ' with a message matching ' + j$.pp(expected);
           } else {
-            return &#x27; with message &#x27; + j$.pp(expected);
+            return ' with message ' + j$.pp(expected);
           }
         },
         hasNoSpecifics: function() {
-          return expected === null &#x26;&#x26; errorType === null;
+          return expected === null &amp;&amp; errorType === null;
         },
         matches: function(error) {
-          return (errorType === null || error instanceof errorType) &#x26;&#x26;
+          return (errorType === null || error instanceof errorType) &amp;&amp;
             (expected === null || messageMatch(error.message));
         }
       };
     }
 
     function isStringOrRegExp(potential) {
-      return potential instanceof RegExp || (typeof potential == &#x27;string&#x27;);
+      return potential instanceof RegExp || (typeof potential == 'string');
     }
 
     function isAnErrorType(type) {
-      if (typeof type !== &#x27;function&#x27;) {
+      if (typeof type !== 'function') {
         return false;
       }
 
@@ -4604,14 +4597,14 @@ times.&#x27; :
     if (!str) {
       return str;
     }
-    return str.replace(/&#x26;/g, &#x27;&#x26;amp;&#x27;)
-      .replace(/&#x3c;/g, &#x27;&#x26;lt;&#x27;)
-      .replace(/&#x3e;/g, &#x27;&#x26;gt;&#x27;);
+    return str.replace(/&amp;/g, '&amp;amp;')
+      .replace(/&lt;/g, '&amp;lt;')
+      .replace(/&gt;/g, '&amp;gt;');
   };
 
   util.argsToArray = function(args) {
     var arrayOfArgs = [];
-    for (var i = 0; i &#x3c; args.length; i++) {
+    for (var i = 0; i &lt; args.length; i++) {
       arrayOfArgs.push(args[i]);
     }
     return arrayOfArgs;
@@ -4632,7 +4625,7 @@ times.&#x27; :
   };
 
   util.clone = function(obj) {
-    if (Object.prototype.toString.apply(obj) === &#x27;[object Array]&#x27;) {
+    if (Object.prototype.toString.apply(obj) === '[object Array]') {
       return obj.slice();
     }
 
@@ -4661,7 +4654,7 @@ times.&#x27; :
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">version = function () {
-  return &#x27;2.5.2&#x27;;
+  return '2.5.2';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4687,10 +4680,10 @@ times.&#x27; :
     <li>description and source-code<pre class="apidocCodePre">Any = function (j$) {
 
   function Any(expectedObject) {
-    if (typeof expectedObject === &#x27;undefined&#x27;) {
+    if (typeof expectedObject === 'undefined') {
       throw new TypeError(
-        &#x27;jasmine.any() expects to be passed a constructor function. &#x27; +
-        &#x27;Please pass one or use jasmine.anything() to match any object.&#x27;
+        'jasmine.any() expects to be passed a constructor function. ' +
+        'Please pass one or use jasmine.anything() to match any object.'
       );
     }
     this.expectedObject = expectedObject;
@@ -4698,30 +4691,30 @@ times.&#x27; :
 
   Any.prototype.asymmetricMatch = function(other) {
     if (this.expectedObject == String) {
-      return typeof other == &#x27;string&#x27; || other instanceof String;
+      return typeof other == 'string' || other instanceof String;
     }
 
     if (this.expectedObject == Number) {
-      return typeof other == &#x27;number&#x27; || other instanceof Number;
+      return typeof other == 'number' || other instanceof Number;
     }
 
     if (this.expectedObject == Function) {
-      return typeof other == &#x27;function&#x27; || other instanceof Function;
+      return typeof other == 'function' || other instanceof Function;
     }
 
     if (this.expectedObject == Object) {
-      return typeof other == &#x27;object&#x27;;
+      return typeof other == 'object';
     }
 
     if (this.expectedObject == Boolean) {
-      return typeof other == &#x27;boolean&#x27;;
+      return typeof other == 'boolean';
     }
 
     return other instanceof this.expectedObject;
   };
 
   Any.prototype.jasmineToString = function() {
-    return &#x27;&#x3c;jasmine.any(&#x27; + j$.fnNameFor(this.expectedObject) + &#x27;)&#x3e;&#x27;;
+    return '&lt;jasmine.any(' + j$.fnNameFor(this.expectedObject) + ')&gt;';
   };
 
   return Any;
@@ -4743,11 +4736,11 @@ times.&#x27; :
   function Anything() {}
 
   Anything.prototype.asymmetricMatch = function(other) {
-    return !j$.util.isUndefined(other) &#x26;&#x26; other !== null;
+    return !j$.util.isUndefined(other) &amp;&amp; other !== null;
   };
 
   Anything.prototype.jasmineToString = function() {
-    return &#x27;&#x3c;jasmine.anything&#x3e;&#x27;;
+    return '&lt;jasmine.anything&gt;';
   };
 
   return Anything;
@@ -4771,9 +4764,9 @@ times.&#x27; :
 
   ArrayContaining.prototype.asymmetricMatch = function(other) {
     var className = Object.prototype.toString.call(this.sample);
-    if (className !== &#x27;[object Array]&#x27;) { throw new Error(&#x27;You must provide an array to arrayContaining, not \&#x27;&#x27; + this.sample + &#x27;\&#x27;.&#x27;); }
+    if (className !== '[object Array]') { throw new Error('You must provide an array to arrayContaining, not \'' + this.sample + '\'.'); }
 
-    for (var i = 0; i &#x3c; this.sample.length; i++) {
+    for (var i = 0; i &lt; this.sample.length; i++) {
       var item = this.sample[i];
       if (!j$.matchersUtil.contains(other, item)) {
         return false;
@@ -4784,7 +4777,7 @@ times.&#x27; :
   };
 
   ArrayContaining.prototype.jasmineToString = function () {
-    return &#x27;&#x3c;jasmine.arrayContaining(&#x27; + jasmine.pp(this.sample) +&#x27;)&#x3e;&#x27;;
+    return '&lt;jasmine.arrayContaining(' + jasmine.pp(this.sample) +')&gt;';
   };
 
   return ArrayContaining;
@@ -4810,7 +4803,7 @@ times.&#x27; :
     function argCloner(context) {
       var clonedArgs = [];
       var argsAsArray = j$.util.argsToArray(context.args);
-      for(var i = 0; i &#x3c; argsAsArray.length; i++) {
+      for(var i = 0; i &lt; argsAsArray.length; i++) {
         if(Object.prototype.toString.apply(argsAsArray[i]).match(/^\[object/)) {
           clonedArgs.push(j$.util.clone(argsAsArray[i]));
         } else {
@@ -4846,7 +4839,7 @@ times.&#x27; :
 
     this.allArgs = function() {
       var callArgs = [];
-      for(var i = 0; i &#x3c; calls.length; i++){
+      for(var i = 0; i &lt; calls.length; i++){
         callArgs.push(calls[i].args);
       }
 
@@ -4907,7 +4900,7 @@ times.&#x27; :
 
     self.install = function() {
       if(!originalTimingFunctionsIntact()) {
-        throw new Error(&#x27;Jasmine Clock was unable to install over custom global timer functions. Is the clock already installed?&#x27;);
+        throw new Error('Jasmine Clock was unable to install over custom global timer functions. Is the clock already installed?');
       }
       replace(global, fakeTimingFunctions);
       timer = fakeTimingFunctions;
@@ -4941,8 +4934,8 @@ times.&#x27; :
 
     self.setTimeout = function(fn, delay, params) {
       if (legacyIE()) {
-        if (arguments.length &#x3e; 2) {
-          throw new Error(&#x27;IE &#x3c; 9 cannot support extra params to setTimeout without a polyfill&#x27;);
+        if (arguments.length &gt; 2) {
+          throw new Error('IE &lt; 9 cannot support extra params to setTimeout without a polyfill');
         }
         return timer.setTimeout(fn, delay);
       }
@@ -4951,8 +4944,8 @@ times.&#x27; :
 
     self.setInterval = function(fn, delay, params) {
       if (legacyIE()) {
-        if (arguments.length &#x3e; 2) {
-          throw new Error(&#x27;IE &#x3c; 9 cannot support extra params to setInterval without a polyfill&#x27;);
+        if (arguments.length &gt; 2) {
+          throw new Error('IE &lt; 9 cannot support extra params to setInterval without a polyfill');
         }
         return timer.setInterval(fn, delay);
       }
@@ -4971,16 +4964,16 @@ times.&#x27; :
       if (installed) {
         delayedFunctionScheduler.tick(millis, function(millis) { mockDate.tick(millis); });
       } else {
-        throw new Error(&#x27;Mock clock is not installed, use jasmine.clock().install()&#x27;);
+        throw new Error('Mock clock is not installed, use jasmine.clock().install()');
       }
     };
 
     return self;
 
     function originalTimingFunctionsIntact() {
-      return global.setTimeout === realTimingFunctions.setTimeout &#x26;&#x26;
-        global.clearTimeout === realTimingFunctions.clearTimeout &#x26;&#x26;
-        global.setInterval === realTimingFunctions.setInterval &#x26;&#x26;
+      return global.setTimeout === realTimingFunctions.setTimeout &amp;&amp;
+        global.clearTimeout === realTimingFunctions.clearTimeout &amp;&amp;
+        global.setInterval === realTimingFunctions.setInterval &amp;&amp;
         global.clearInterval === realTimingFunctions.clearInterval;
     }
 
@@ -5048,7 +5041,7 @@ times.&#x27; :
 
     self.scheduleFunction = function(funcToCall, millis, params, recurring, timeoutKey, runAtMillis) {
       var f;
-      if (typeof(funcToCall) === &#x27;string&#x27;) {
+      if (typeof(funcToCall) === 'string') {
 <span class="apidocCodeCommentSpan">        /* jshint evil: true */
 </span>        f = function() { return eval(funcToCall); };
         /* jshint evil: false */
@@ -5089,7 +5082,7 @@ times.&#x27; :
           return func.timeoutKey === timeoutKey;
         });
 
-        if (i &#x3e; -1) {
+        if (i &gt; -1) {
           if (funcs.length === 1) {
             delete scheduledFunctions[runAtMillis];
             deleteFromLookup(runAtMillis);
@@ -5097,7 +5090,7 @@ times.&#x27; :
             funcs.splice(i, 1);
           }
 
-          // intervals get rescheduled when executed, so there&#x27;s never more
+          // intervals get rescheduled when executed, so there's never more
           // than a single scheduled function with a given timeoutKey
           break;
         }
@@ -5109,7 +5102,7 @@ times.&#x27; :
     function indexOfFirstToPass(array, testFn) {
       var index = -1;
 
-      for (var i = 0; i &#x3c; array.length; ++i) {
+      for (var i = 0; i &lt; array.length; ++i) {
         if (testFn(array[i])) {
           index = i;
           break;
@@ -5125,7 +5118,7 @@ times.&#x27; :
         return millis === value;
       });
 
-      if (i &#x3e; -1) {
+      if (i &gt; -1) {
         scheduledLookup.splice(i, 1);
       }
     }
@@ -5140,14 +5133,14 @@ times.&#x27; :
     }
 
     function forEachFunction(funcsToRun, callback) {
-      for (var i = 0; i &#x3c; funcsToRun.length; ++i) {
+      for (var i = 0; i &lt; funcsToRun.length; ++i) {
         callback(funcsToRun[i]);
       }
     }
 
     function runScheduledFunctions(endTime, tickDate) {
       tickDate = tickDate || function() {};
-      if (scheduledLookup.length === 0 || scheduledLookup[0] &#x3e; endTime) {
+      if (scheduledLookup.length === 0 || scheduledLookup[0] &gt; endTime) {
         tickDate(endTime - currentTime);
         return;
       }
@@ -5170,11 +5163,11 @@ times.&#x27; :
         forEachFunction(funcsToRun, function(funcToRun) {
           funcToRun.funcToCall.apply(null, funcToRun.params || []);
         });
-      } while (scheduledLookup.length &#x3e; 0 &#x26;&#x26;
-              // checking first if we&#x27;re out of time prevents setTimeout(0)
+      } while (scheduledLookup.length &gt; 0 &amp;&amp;
+              // checking first if we're out of time prevents setTimeout(0)
               // scheduled in a funcToRun from forcing an extra iteration
-                 currentTime !== endTime  &#x26;&#x26;
-                 scheduledLookup[0] &#x3c;= endT ...</pre></li>
+                 currentTime !== endTime  &amp;&amp;
+                 scheduledLookup[0] &lt;= endT ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5220,12 +5213,12 @@ times.&#x27; :
     };
 
     var reporter = new j$.ReportDispatcher([
-      &#x27;jasmineStarted&#x27;,
-      &#x27;jasmineDone&#x27;,
-      &#x27;suiteStarted&#x27;,
-      &#x27;suiteDone&#x27;,
-      &#x27;specStarted&#x27;,
-      &#x27;specDone&#x27;
+      'jasmineStarted',
+      'jasmineDone',
+      'suiteStarted',
+      'suiteDone',
+      'specStarted',
+      'specDone'
     ]);
 
     this.specFilter = function() {
@@ -5234,14 +5227,14 @@ times.&#x27; :
 
     this.addCustomEqualityTester = function(tester) {
       if(!currentRunnable()) {
-        throw new Error(&#x27;Custom Equalities must be added in a before function or a spec&#x27;);
+        throw new Error('Custom Equalities must be added in a before function or a spec');
       }
       runnableResources[currentRunnable().id].customEqualityTesters.push(tester);
     };
 
     this.addMatchers = function(matchersToAdd) {
       if(!currentRunnable()) {
-        throw new Error(&#x27;Matchers must be added in a before function or a spec&#x27;);
+        throw new Error('Matchers must be added in a before function or a spec');
       }
       var customMatchers = runnableResources[currentRunnable().id].customMatchers;
       for (var matcherName in matchersToAdd) {
@@ -5253,12 +5246,12 @@ times.&#x27; :
 
     var nextSpecId = 0;
     var getNextSpecId = function() {
-      return &#x27;spec&#x27; + nextSpecId++;
+      return 'spec' + nextSpecId++;
     };
 
     var nextSuiteId = 0;
     var getNextSuiteId = function() {
-      return &#x27;suite&#x27; + nextSuiteId++;
+      return 'suite' + nextSuiteId++;
     };
 
     var expectationFactory = function(actual, spec) {
@@ -5314,10 +5307,10 @@ times.&#x27; :
       var fullName = [spec.description],
           suiteFullName = suite.getFullName();
 
-      if (suiteFullName !== &#x27;&#x27;) {
+      if (suiteFullName !== '') {
         fullName.unshift(suiteFullName);
       }
-      return fullName.join(&#x27; &#x27;);
+      return fullName.join(' ');
     };
 
     // TODO: we may just be able to pass in the fn instead of wrapping here
@@ -5340,20 +5333,20 @@ times.&#x27; :
     <li>description and source-code<pre class="apidocCodePre">ExceptionFormatter = function () {
   function ExceptionFormatter() {
     this.message = function(error) {
-      var message = &#x27;&#x27;;
+      var message = '';
 
-      if (error.name &#x26;&#x26; error.message) {
-        message += error.name + &#x27;: &#x27; + error.message;
+      if (error.name &amp;&amp; error.message) {
+        message += error.name + ': ' + error.message;
       } else {
-        message += error.toString() + &#x27; thrown&#x27;;
+        message += error.toString() + ' thrown';
       }
 
       if (error.fileName || error.sourceURL) {
-        message += &#x27; in &#x27; + (error.fileName || error.sourceURL);
+        message += ' in ' + (error.fileName || error.sourceURL);
       }
 
       if (error.line || error.lineNumber) {
-        message += &#x27; (line &#x27; + (error.line || error.lineNumber) + &#x27;)&#x27;;
+        message += ' (line ' + (error.line || error.lineNumber) + ')';
       }
 
       return message;
@@ -5397,7 +5390,7 @@ times.&#x27; :
     return function() {
       var args = Array.prototype.slice.call(arguments, 0),
         expected = args.slice(0),
-        message = &#x27;&#x27;;
+        message = '';
 
       args.unshift(this.actual);
 
@@ -5422,7 +5415,7 @@ times.&#x27; :
           args.unshift(name);
           message = this.util.buildFailureMessage.apply(null, args);
         } else {
-          if (Object.prototype.toString.apply(result.message) === &#x27;[object Function]&#x27;) {
+          if (Object.prototype.toString.apply(result.message) === '[object Function]') {
             message = result.message();
           } else {
             message = result.message;
@@ -5492,7 +5485,7 @@ times.&#x27; :
 
   function JsApiReporter(options) {
     var timer = options.timer || noopTimer,
-        status = &#x27;loaded&#x27;;
+        status = 'loaded';
 
     this.started = false;
     this.finished = false;
@@ -5500,7 +5493,7 @@ times.&#x27; :
 
     this.jasmineStarted = function() {
       this.started = true;
-      status = &#x27;started&#x27;;
+      status = 'started';
       timer.start();
     };
 
@@ -5510,7 +5503,7 @@ times.&#x27; :
       this.finished = true;
       this.runDetails = runDetails;
       executionTime = timer.elapsed();
-      status = &#x27;done&#x27;;
+      status = 'done';
     };
 
     this.status = function() {
@@ -5644,7 +5637,7 @@ times.&#x27; :
         if (GlobalDate.now) {
           return currentTime;
         } else {
-          throw new Error(&#x27;Browser does not support Date.now()&#x27;);
+          throw new Error('Browser does not support Date.now()');
         }
       };
 
@@ -5700,8 +5693,8 @@ times.&#x27; :
   }
 
   ObjectContaining.prototype.asymmetricMatch = function(other) {
-    if (typeof(this.sample) !== &#x27;object&#x27;) { throw new Error(&#x27;You must provide an object to objectContaining, not \&#x27;&#x27;+this.sample
-+&#x27;\&#x27;.&#x27;); }
+    if (typeof(this.sample) !== 'object') { throw new Error('You must provide an object to objectContaining, not \''+this.sample
++'\'.'); }
 
     for (var property in this.sample) {
       if (!hasProperty(other, property) ||
@@ -5714,7 +5707,7 @@ times.&#x27; :
   };
 
   ObjectContaining.prototype.jasmineToString = function() {
-    return &#x27;&#x3c;jasmine.objectContaining(&#x27; + j$.pp(this.sample) + &#x27;)&#x3e;&#x27;;
+    return '&lt;jasmine.objectContaining(' + j$.pp(this.sample) + ')&gt;';
   };
 
   return ObjectContaining;
@@ -5733,7 +5726,7 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Order = function () {
   function Order(options) {
-    this.random = &#x27;random&#x27; in options ? options.random : true;
+    this.random = 'random' in options ? options.random : true;
     var seed = this.seed = options.seed || generateSeed();
     this.sort = this.random ? randomOrder : naturalOrder;
 
@@ -5760,14 +5753,14 @@ times.&#x27; :
 
     function jenkinsHash(key) {
       var hash, i;
-      for(hash = i = 0; i &#x3c; key.length; ++i) {
+      for(hash = i = 0; i &lt; key.length; ++i) {
         hash += key.charCodeAt(i);
-        hash += (hash &#x3c;&#x3c; 10);
-        hash ^= (hash &#x3e;&#x3e; 6);
+        hash += (hash &lt;&lt; 10);
+        hash ^= (hash &gt;&gt; 6);
       }
-      hash += (hash &#x3c;&#x3c; 3);
-      hash ^= (hash &#x3e;&#x3e; 11);
-      hash += (hash &#x3c;&#x3c; 15);
+      hash += (hash &lt;&lt; 3);
+      hash ^= (hash &gt;&gt; 11);
+      hash += (hash &lt;&lt; 15);
       return hash;
     }
 
@@ -5821,9 +5814,9 @@ times.&#x27; :
       iterativeIndex;
 
 
-    for(iterativeIndex = recursiveIndex; iterativeIndex &#x3c; length; iterativeIndex++) {
+    for(iterativeIndex = recursiveIndex; iterativeIndex &lt; length; iterativeIndex++) {
       var queueableFn = queueableFns[iterativeIndex];
-      if (queueableFn.fn.length &#x3e; 0) {
+      if (queueableFn.fn.length &gt; 0) {
         attemptAsync(queueableFn);
         return;
       } else {
@@ -5831,7 +5824,7 @@ times.&#x27; :
       }
     }
 
-    var runnerDone = iterativeIndex &#x3e;= length;
+    var runnerDone = iterativeIndex &gt;= length;
 
     if (runnerDone) {
       this.clearStack(this.onComplete);
@@ -5862,8 +5855,8 @@ times.&#x27; :
 
       if (queueableFn.timeout) {
         timeoutId = Function.prototype.apply.apply(self.timeout.setTimeout, [j$.getGlobal(), [function() {
-          var error = new Error(&#x27;Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL
-.&#x27;);
+          var error = new Error('Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL
+.');
           onException(error);
           next();
         }, queueableFn.timeout()]]);
@@ -5910,7 +5903,7 @@ times.&#x27; :
 
     var dispatchedMethods = methods || [];
 
-    for (var i = 0; i &#x3c; dispatchedMethods.length; i++) {
+    for (var i = 0; i &lt; dispatchedMethods.length; i++) {
       var method = dispatchedMethods[i];
       this[method] = (function(m) {
         return function() {
@@ -5937,10 +5930,10 @@ times.&#x27; :
     return this;
 
     function dispatch(method, args) {
-      if (reporters.length === 0 &#x26;&#x26; fallbackReporter !== null) {
+      if (reporters.length === 0 &amp;&amp; fallbackReporter !== null) {
           reporters.push(fallbackReporter);
       }
-      for (var i = 0; i &#x3c; reporters.length; i++) {
+      for (var i = 0; i &lt; reporters.length; i++) {
         var reporter = reporters[i];
         if (reporter[method]) {
           reporter[method].apply(reporter, args);
@@ -5968,12 +5961,12 @@ times.&#x27; :
     this.expectationFactory = attrs.expectationFactory;
     this.resultCallback = attrs.resultCallback || function() {};
     this.id = attrs.id;
-    this.description = attrs.description || &#x27;&#x27;;
+    this.description = attrs.description || '';
     this.queueableFn = attrs.queueableFn;
     this.beforeAndAfterFns = attrs.beforeAndAfterFns || function() { return {befores: [], afters: []}; };
     this.userContext = attrs.userContext || function() { return {}; };
     this.onStart = attrs.onStart || function() {};
-    this.getSpecName = attrs.getSpecName || function() { return &#x27;&#x27;; };
+    this.getSpecName = attrs.getSpecName || function() { return ''; };
     this.expectationResultFactory = attrs.expectationResultFactory || function() { };
     this.queueRunnerFactory = attrs.queueRunnerFactory || function() {};
     this.catchingExceptions = attrs.catchingExceptions || function() { return true; };
@@ -5989,7 +5982,7 @@ times.&#x27; :
       fullName: this.getFullName(),
       failedExpectations: [],
       passedExpectations: [],
-      pendingReason: &#x27;&#x27;
+      pendingReason: ''
     };
   }
 
@@ -6000,7 +5993,7 @@ times.&#x27; :
     } else {
       this.result.failedExpectations.push(expectationResult);
 
-      if (this.throwOnExpectationFailure &#x26;&#x26; !isError) {
+      if (this.throwOnExpectationFailure &amp;&amp; !isError) {
         throw new j$.errors.ExpectationFailed();
       }
     }
@@ -6051,10 +6044,10 @@ times.&#x27; :
     }
 
     this.addExpectationResult(false, {
-      matcherName: &#x27;&#x27;,
+      matcherName: '',
       passed: false,
-      expected: &#x27;&#x27;,
-      actual: &#x27;&#x27;,
+      expected: '',
+      actual: '',
       error: e
     }, true);
   };
@@ -6077,17 +6070,17 @@ times.&#x27; :
 
   Spec.prototype.status = function(enabled) {
     if (this.disabled || enabled === false) {
-      return &#x27;disabled&#x27;;
+      return 'disabled';
     }
 
     if (this.markedPending) {
-      return &#x27;pending&#x27;;
+      return 'pending';
     }
 
-    if (this.result.failedExpectations.length &#x3e; 0) {
-      return &#x27;failed&#x27;;
+    if (this.result.failedExpectations.length &gt; 0) {
+      return 'failed';
     } else {
-      return &#x27;passed&#x27;;
+      return 'passed';
     }
   };
 
@@ -6107,10 +6100,10 @@ times.&#x27; :
     return fullMessage.substr(boilerplateEnd);
   };
 
-  Spec.pendingSpecExceptionMessage = &#x27;=&#x3e; marked Pending&#x27;;
+  Spec.pendingSpecExceptionMessage = '=&gt; marked Pending';
 
   Spec.isPendingSpecException = function(e) {
-    return !!(e &#x26;&#x26; e.toString &#x26;&#x26; e.toString().inde ...</pre></li>
+    return !!(e &amp;&amp; e.toString &amp;&amp; e.toString().inde ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -6125,7 +6118,7 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">SpyRegistry = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;spyOn&#x3e;&#x27;, &#x27;spyOn(&#x3c;object&#x3e;, &#x3c;methodName&#x3e;)&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;spyOn&gt;', 'spyOn(&lt;object&gt;, &lt;methodName&gt;)');
 
   function SpyRegistry(options) {
     options = options || {};
@@ -6138,22 +6131,22 @@ times.&#x27; :
     this.spyOn = function(obj, methodName) {
 
       if (j$.util.isUndefined(obj)) {
-        throw new Error(getErrorMsg(&#x27;could not find an object to spy upon for &#x27; + methodName + &#x27;()&#x27;));
+        throw new Error(getErrorMsg('could not find an object to spy upon for ' + methodName + '()'));
       }
 
       if (j$.util.isUndefined(methodName)) {
-        throw new Error(getErrorMsg(&#x27;No method name supplied&#x27;));
+        throw new Error(getErrorMsg('No method name supplied'));
       }
 
       if (j$.util.isUndefined(obj[methodName])) {
-        throw new Error(getErrorMsg(methodName + &#x27;() method does not exist&#x27;));
+        throw new Error(getErrorMsg(methodName + '() method does not exist'));
       }
 
-      if (obj[methodName] &#x26;&#x26; j$.isSpy(obj[methodName])  ) {
+      if (obj[methodName] &amp;&amp; j$.isSpy(obj[methodName])  ) {
         if ( !!this.respy ){
           return obj[methodName];
         }else {
-          throw new Error(getErrorMsg(methodName + &#x27; has already been spied upon&#x27;));
+          throw new Error(getErrorMsg(methodName + ' has already been spied upon'));
         }
       }
 
@@ -6161,11 +6154,11 @@ times.&#x27; :
       try {
         descriptor = Object.getOwnPropertyDescriptor(obj, methodName);
       } catch(e) {
-        // IE 8 doesn&#x27;t support `definePropery` on non-DOM nodes
+        // IE 8 doesn't support `definePropery` on non-DOM nodes
       }
 
-      if (descriptor &#x26;&#x26; !(descriptor.writable || descriptor.set)) {
-        throw new Error(getErrorMsg(methodName + &#x27; is not declared writable or has no setter&#x27;));
+      if (descriptor &amp;&amp; !(descriptor.writable || descriptor.set)) {
+        throw new Error(getErrorMsg(methodName + ' is not declared writable or has no setter'));
       }
 
       var originalMethod = obj[methodName],
@@ -6195,7 +6188,7 @@ times.&#x27; :
 
     this.clearSpies = function() {
       var spies = currentSpies();
-      for (var i = spies.length - 1; i &#x3e;= 0; i--) {
+      for (var i = spies.length - 1; i &gt;= 0; i--) {
         var spyEntry = spies[i];
         spyEntry.restoreObjectToOriginalState();
       }
@@ -6221,7 +6214,7 @@ times.&#x27; :
   function SpyStrategy(options) {
     options = options || {};
 
-    var identity = options.name || &#x27;unknown&#x27;,
+    var identity = options.name || 'unknown',
         originalFn = options.fn || function() {},
         getSpy = options.getSpy || function() {},
         plan = function() {};
@@ -6264,7 +6257,7 @@ times.&#x27; :
 
     this.callFake = function(fn) {
       if(!j$.isFunction_(fn)) {
-        throw new Error(&#x27;Argument passed to callFake should be a function, got &#x27; + fn);
+        throw new Error('Argument passed to callFake should be a function, got ' + fn);
       }
       plan = fn;
       return getSpy();
@@ -6293,8 +6286,8 @@ times.&#x27; :
     <li>description and source-code<pre class="apidocCodePre">StringMatching = function (j$) {
 
   function StringMatching(expected) {
-    if (!j$.isString_(expected) &#x26;&#x26; !j$.isA_(&#x27;RegExp&#x27;, expected)) {
-      throw new Error(&#x27;Expected is not a String or a RegExp&#x27;);
+    if (!j$.isString_(expected) &amp;&amp; !j$.isA_('RegExp', expected)) {
+      throw new Error('Expected is not a String or a RegExp');
     }
 
     this.regexp = new RegExp(expected);
@@ -6305,7 +6298,7 @@ times.&#x27; :
   };
 
   StringMatching.prototype.jasmineToString = function() {
-    return &#x27;&#x3c;jasmine.stringMatching(&#x27; + this.regexp + &#x27;)&#x3e;&#x27;;
+    return '&lt;jasmine.stringMatching(' + this.regexp + ')&gt;';
   };
 
   return StringMatching;
@@ -6359,7 +6352,7 @@ times.&#x27; :
         fullName.unshift(parentSuite.description);
       }
     }
-    return fullName.join(&#x27; &#x27;);
+    return fullName.join(' ');
   };
 
   Suite.prototype.disable = function() {
@@ -6392,17 +6385,17 @@ times.&#x27; :
 
   Suite.prototype.status = function() {
     if (this.disabled) {
-      return &#x27;disabled&#x27;;
+      return 'disabled';
     }
 
     if (this.markedPending) {
-      return &#x27;pending&#x27;;
+      return 'pending';
     }
 
-    if (this.result.failedExpectations.length &#x3e; 0) {
-      return &#x27;failed&#x27;;
+    if (this.result.failedExpectations.length &gt; 0) {
+      return 'failed';
     } else {
-      return &#x27;finished&#x27;;
+      return 'finished';
     }
   };
 
@@ -6411,7 +6404,7 @@ times.&#x27; :
   };
 
   Suite.prototype.canBeReentered = function() {
-    return this.beforeAllFns.length === 0 &#x26;&#x26; this.afterAllFns.length === 0;
+    return this.beforeAllFns.length === 0 &amp;&amp; this.afterAllFns.length === 0;
   };
 
   Suite.prototype.getResult = function() {
@@ -6438,15 +6431,15 @@ times.&#x27; :
 
     if(isAfterAll(this.children)) {
       var data = {
-        matcherName: &#x27;&#x27;,
+        matcherName: '',
         passed: false,
-        expected: &#x27;&#x27;,
-        actual: &#x27;&#x27;,
+        expected: '',
+        actual: '',
         error: arguments[0]
       };
       this.result.failedExpectations.push(this.expectationResultFactory(data));
     } else {
-      for (var i = 0; i &#x3c; this.children.length; i++) {
+      for (var i = 0; i &lt; this.children.length; i++) {
         var child = this.children[i];
         child.onException.apply(child, arguments);
       }
@@ -6454,14 +6447,14 @@ times.&#x27; :
   };
 
   Suite.prototype.addExpectationResult = function () {
-    if(isAfterAll(this.children) &#x26;&#x26; isFailure(arguments)){
+    if(isAfterAll(this.children) &amp;&amp; isFailure(arguments)){
       var data = arguments[1];
       this.result.failedExpectations.push(this.expectationResultFactory(data));
       if(this.throwOnExpectationFailure) {
         throw new j$.errors.ExpectationFailed();
       }
     } else {
-      for (var i = 0; i &#x3c; this.children.length; i++) {
+      for (var i = 0; i &lt; this.children.length; i++) {
         var child = this.children[i];
         try {
           child.addExpectationResult.apply(child, arguments);
@@ -6473,7 +6466,7 @@ times.&#x27; :
   };
 
   function isAfterAll(children) {
-    return children &#x26;&#x26; children[0].result.status;
+    return children &amp;&amp; children[0].result.status;
   }
 
   function isFailure(args) {
@@ -6564,7 +6557,7 @@ times.&#x27; :
       }
 
       if (!stats.valid) {
-        throw &#x27;invalid order&#x27;;
+        throw 'invalid order';
       }
 
       var childFns = wrapChildren(tree, 0);
@@ -6580,7 +6573,7 @@ times.&#x27; :
     };
 
     function runnableIndex(id) {
-      for (var i = 0; i &#x3c; runnableIds.length; i++) {
+      for (var i = 0; i &lt; runnableIds.length; i++) {
         if (runnableIds[i] === id) {
           return i;
         }
@@ -6594,11 +6587,11 @@ times.&#x27; :
         parentEnabled = true;
       }
 
-      parentEnabled = parentEnabled &#x26;&#x26; node.isExecutable();
+      parentEnabled = parentEnabled &amp;&amp; node.isExecutable();
 
       if (!node.children) {
         stats[node.id] = {
-          executable: parentEnabled &#x26;&#x26; node.isExecutable(),
+          executable: parentEnabled &amp;&amp; node.isExecutable(),
           segments: [{
             index: 0,
             owner: node,
@@ -6612,7 +6605,7 @@ times.&#x27; :
 
         var orderedChildren = orderChildren(node);
 
-        for (var i = 0; i &#x3c; orderedChildren.length; i++) {
+        for (var i = 0; i &lt; orderedChildren.length; i++) {
           var child = orderedChildren[i];
 
           processNode(child, parentEnabled);
@@ -6632,7 +6625,7 @@ times.&#x27; :
 
         segmentChildren(node, orderedChildren, stats[node.id], executableIndex);
 
-        if (!node.canBeReentered() &#x26;&#x26; stats[node.id].segments.length &#x3e; 1) {
+        if (!node.canBeReentered() &amp;&amp; stats[node.id].segments.length &gt; 1) {
           stats = { valid: false };
         }
       }
@@ -6654,10 +6647,10 @@ times.&#x27; :
           orderedChildSegments = orderChildSegments(orderedChildren);
 
       function isSegmentBoundary(minIndex) {
-        return lastMax !== defaultMax &#x26;&#x26; minIndex !== defaultMin &#x26;&#x26; lastMax &#x3c; minIndex - 1;
+        return lastMax !== defaultMax &amp;&amp; minIndex !== defaultMin &amp;&amp; lastMax &lt; minIndex - 1;
       }
 
-      for (var i = 0; i &#x3c; orderedChildSegments.length; i++) {
+      for (var i = 0; i &lt; orderedChildSegments.length; i++) {
         var childSegment = orderedChildSegments[i],
           maxIndex = childSegment.max,
           minIndex = childSegment.min;
@@ -6693,7 +6686,7 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">base = function (j$, jasmineGlobal) {
   j$.unimplementedMethod_ = function() {
-    throw new Error(&#x27;unimplemented method&#x27;);
+    throw new Error('unimplemented method');
   };
 
   j$.MAX_PRETTY_PRINT_DEPTH = 40;
@@ -6711,27 +6704,27 @@ times.&#x27; :
   };
 
   j$.isArray_ = function(value) {
-    return j$.isA_(&#x27;Array&#x27;, value);
+    return j$.isA_('Array', value);
   };
 
   j$.isString_ = function(value) {
-    return j$.isA_(&#x27;String&#x27;, value);
+    return j$.isA_('String', value);
   };
 
   j$.isNumber_ = function(value) {
-    return j$.isA_(&#x27;Number&#x27;, value);
+    return j$.isA_('Number', value);
   };
 
   j$.isFunction_ = function(value) {
-    return j$.isA_(&#x27;Function&#x27;, value);
+    return j$.isA_('Function', value);
   };
 
   j$.isA_ = function(typeName, value) {
-    return Object.prototype.toString.apply(value) === &#x27;[object &#x27; + typeName + &#x27;]&#x27;;
+    return Object.prototype.toString.apply(value) === '[object ' + typeName + ']';
   };
 
   j$.isDomNode = function(obj) {
-    return obj.nodeType &#x3e; 0;
+    return obj.nodeType &gt; 0;
   };
 
   j$.fnNameFor = function(func) {
@@ -6740,7 +6733,7 @@ times.&#x27; :
     }
 
     var matches = func.toString().match(/^\s*function\s*(\w*)\s*\(/);
-    return matches ? matches[1] : &#x27;&#x3c;anonymous&#x3e;&#x27;;
+    return matches ? matches[1] : '&lt;anonymous&gt;';
   };
 
   j$.any = function(clazz) {
@@ -6785,8 +6778,8 @@ times.&#x27; :
       };
 
     for (var prop in originalFn) {
-      if (prop === &#x27;and&#x27; || prop === &#x27;calls&#x27;) {
-        throw new Error(&#x27;Jasmine spies would overwrite the \&#x27;and\&#x27; and \&#x27;calls\&#x27; properties on the object being spied upon&#x27;);
+      if (prop === 'and' || prop === 'calls') {
+        throw new Error('Jasmine spies would overwrite the \'and\' and \'calls\' properties on the object being spied upon');
       }
 
       spy[prop] = originalFn[prop];
@@ -6802,22 +6795,22 @@ times.&#x27; :
     if (!putativeSpy) {
       return false;
     }
-    return putativeSpy.and instanceof j$.SpyStrategy &#x26;&#x26;
+    return putativeSpy.and instanceof j$.SpyStrategy &amp;&amp;
       putativeSpy.calls instanceof j$.CallTracker;
   };
 
   j$.createSpyObj = function(baseName, methodNames) {
-    if (j$.isArray_(baseName) &#x26;&#x26; j$.util.isUndefined(methodNames)) {
+    if (j$.isArray_(baseName) &amp;&amp; j$.util.isUndefined(methodNames)) {
       methodNames = baseName;
-      baseName = &#x27;unknown&#x27;;
+      baseName = 'unknown';
     }
 
     if (!j$.isArray_(methodNames) || methodNames.length === 0) {
-      throw &#x27;createSpyObj requires a non-empty array of method names to create spies for&#x27;;
+      throw 'createSpyObj requires a non-empty array of method names to create spies for';
     }
     var obj = {};
-    for (var i = 0; i &#x3c; methodNames.length; i++) {
-      obj[methodNames[i]] = j$.createSpy(baseName + &#x27;.&#x27; + methodNames[i]);
+    for (var i = 0; i &lt; methodNames.length; i++) {
+      obj[methodNames[i]] = j$.createSpy(baseName + '.' + methodNames[i]);
     }
     return obj;
   };
@@ -6837,7 +6830,7 @@ times.&#x27; :
     <li>description and source-code<pre class="apidocCodePre">boot = function (jasmineRequire) {
   var jasmine = jasmineRequire.core(jasmineRequire);
 
-  var consoleFns = require(&#x27;../console/console.js&#x27;);
+  var consoleFns = require('../console/console.js');
   consoleFns.console(consoleFns, jasmine);
 
   var env = jasmine.getEnv();
@@ -6886,18 +6879,18 @@ times.&#x27; :
 
     function message() {
       if (options.passed) {
-        return &#x27;Passed.&#x27;;
+        return 'Passed.';
       } else if (options.message) {
         return options.message;
       } else if (options.error) {
         return messageFormatter(options.error);
       }
-      return &#x27;&#x27;;
+      return '';
     }
 
     function stack() {
       if (options.passed) {
-        return &#x27;&#x27;;
+        return '';
       }
 
       var error = options.error;
@@ -7000,10 +6993,10 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">formatErrorMsg = function () {
   function generateErrorMsg(domain, usage) {
-    var usageDefinition = usage ? &#x27;\nUsage: &#x27; + usage : &#x27;&#x27;;
+    var usageDefinition = usage ? '\nUsage: ' + usage : '';
 
     return function errorMsg(msg) {
-      return domain + &#x27; : &#x27; + msg + usageDefinition;
+      return domain + ' : ' + msg + usageDefinition;
     };
   }
 
@@ -7125,10 +7118,10 @@ times.&#x27; :
     contains: function(haystack, needle, customTesters) {
       customTesters = customTesters || [];
 
-      if ((Object.prototype.toString.apply(haystack) === &#x27;[object Array]&#x27;) ||
-        (!!haystack &#x26;&#x26; !haystack.indexOf))
+      if ((Object.prototype.toString.apply(haystack) === '[object Array]') ||
+        (!!haystack &amp;&amp; !haystack.indexOf))
       {
-        for (var i = 0; i &#x3c; haystack.length; i++) {
+        for (var i = 0; i &lt; haystack.length; i++) {
           if (eq(haystack[i], needle, [], [], customTesters)) {
             return true;
           }
@@ -7136,7 +7129,7 @@ times.&#x27; :
         return false;
       }
 
-      return !!haystack &#x26;&#x26; haystack.indexOf(needle) &#x3e;= 0;
+      return !!haystack &amp;&amp; haystack.indexOf(needle) &gt;= 0;
     },
 
     buildFailureMessage: function() {
@@ -7145,35 +7138,35 @@ times.&#x27; :
         isNot = args[1],
         actual = args[2],
         expected = args.slice(3),
-        englishyPredicate = matcherName.replace(/[A-Z]/g, function(s) { return &#x27; &#x27; + s.toLowerCase(); });
+        englishyPredicate = matcherName.replace(/[A-Z]/g, function(s) { return ' ' + s.toLowerCase(); });
 
-      var message = &#x27;Expected &#x27; +
+      var message = 'Expected ' +
         j$.pp(actual) +
-        (isNot ? &#x27; not &#x27; : &#x27; &#x27;) +
+        (isNot ? ' not ' : ' ') +
         englishyPredicate;
 
-      if (expected.length &#x3e; 0) {
-        for (var i = 0; i &#x3c; expected.length; i++) {
-          if (i &#x3e; 0) {
-            message += &#x27;,&#x27;;
+      if (expected.length &gt; 0) {
+        for (var i = 0; i &lt; expected.length; i++) {
+          if (i &gt; 0) {
+            message += ',';
           }
-          message += &#x27; &#x27; + j$.pp(expected[i]);
+          message += ' ' + j$.pp(expected[i]);
         }
       }
 
-      return message + &#x27;.&#x27;;
+      return message + '.';
     }
   };
 
   function isAsymmetric(obj) {
-    return obj &#x26;&#x26; j$.isA_(&#x27;Function&#x27;, obj.asymmetricMatch);
+    return obj &amp;&amp; j$.isA_('Function', obj.asymmetricMatch);
   }
 
   function asymmetricMatch(a, b) {
     var asymmetricA = isAsymmetric(a),
         asymmetricB = isAsymmetric(b);
 
-    if (asymmetricA &#x26;&#x26; asymmetricB) {
+    if (asymmetricA &amp;&amp; asymmetricB) {
       return undefined;
     }
 
@@ -7196,18 +7189,18 @@ times.&#x27; :
       return asymmetricResult;
     }
 
-    for (var i = 0; i &#x3c; customTesters.length; i++) {
+    for (var i = 0; i &lt; customTesters.length; i++) {
       var customTesterResult = customTesters[i](a, b);
       if (!j$.util.isUndefined(customTesterResult)) {
         return customTesterResult;
       }
     }
 
-    if (a instanceof Error &#x26;&#x26; b instanceof Error) {
+    if (a instanceof Error &amp;&amp; b instanceof Error) {
       return a.message == b.message;
     }
 
-    // Identical objects are equal. `0 === -0`, but they aren&#x27;t identical.
+    // Identical objects are equal. `0 === -0`, but they aren't identical.
     // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
     if (a === b) { return a !== 0 || 1 / a == 1 / b; }
     // A strict comparison is necessary because `null == undefined`.
@@ -7216,28 +7209,28 @@ times.&#x27; :
     if (className != Object.prototype.toString.call(b)) { return false; }
     switch (className) {
       // Strings, numbers, dates, and booleans are compared by value.
-      case &#x27;[object String]&#x27;:
-        // Primitives and their corresponding object wrappers are equivalent; thus, `&#x22;5&#x22;` is
-        // equivalent to `new String(&#x22;5&#x22;)`.
+      case '[object String]':
+        // Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is
+        // equivalent to `new String("5")`.
         return a == String(b);
-      case &#x27;[object Number]&#x27;:
+      case '[object Number]':
         // `NaN`s are equivalent, but non-reflexive. An `egal` comparison is performed for
         // other numeric values.
         return a != +a ? b != +b : (a === 0 ? 1 / a == 1 / b : a == +b);
-      case &#x27;[object Date]&#x27;:
-      case &#x27;[object Boolean]&#x27;:
+      case '[object Date]':
+      case '[object Boolean]':
         // Coerce dates and booleans to numeric primitive values. Dates are compared by their
         // millisecond representations. Note that invalid dates with millisecond representations
         // of `NaN` are not equivalent.
         return +a == +b;
       // RegExps are compared by their source patterns and flags.
-      case &#x27;[object RegExp]&#x27;:
-        return a.source == b.source &#x26;&#x26;
-          a.global == b.global &#x26;&#x26;
-          a.multiline == b.multiline &#x26;&#x26;
+      case '[object RegExp]':
+        return a.source == b.source &amp;&amp;
+          a.global == b.global &amp;&amp;
+          a.multiline == b.multiline &amp;&amp;
           a.ignoreCase == b.ignoreCase;
     }
-    if (typeof a != &#x27;object&#x27; || typeo ...</pre></li>
+    if (typeof a != 'object' || typeo ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7261,33 +7254,33 @@ times.&#x27; :
     this.ppNestLevel_++;
     try {
       if (j$.util.isUndefined(value)) {
-        this.emitScalar(&#x27;undefined&#x27;);
+        this.emitScalar('undefined');
       } else if (value === null) {
-        this.emitScalar(&#x27;null&#x27;);
-      } else if (value === 0 &#x26;&#x26; 1/value === -Infinity) {
-        this.emitScalar(&#x27;-0&#x27;);
+        this.emitScalar('null');
+      } else if (value === 0 &amp;&amp; 1/value === -Infinity) {
+        this.emitScalar('-0');
       } else if (value === j$.getGlobal()) {
-        this.emitScalar(&#x27;&#x3c;global&#x3e;&#x27;);
+        this.emitScalar('&lt;global&gt;');
       } else if (value.jasmineToString) {
         this.emitScalar(value.jasmineToString());
-      } else if (typeof value === &#x27;string&#x27;) {
+      } else if (typeof value === 'string') {
         this.emitString(value);
       } else if (j$.isSpy(value)) {
-        this.emitScalar(&#x27;spy on &#x27; + value.and.identity());
+        this.emitScalar('spy on ' + value.and.identity());
       } else if (value instanceof RegExp) {
         this.emitScalar(value.toString());
-      } else if (typeof value === &#x27;function&#x27;) {
-        this.emitScalar(&#x27;Function&#x27;);
-      } else if (typeof value.nodeType === &#x27;number&#x27;) {
-        this.emitScalar(&#x27;HTMLNode&#x27;);
+      } else if (typeof value === 'function') {
+        this.emitScalar('Function');
+      } else if (typeof value.nodeType === 'number') {
+        this.emitScalar('HTMLNode');
       } else if (value instanceof Date) {
-        this.emitScalar(&#x27;Date(&#x27; + value + &#x27;)&#x27;);
-      } else if (value.toString &#x26;&#x26; typeof value === &#x27;object&#x27; &#x26;&#x26; !(value instanceof Array) &#x26;&#x26; value.toString !== Object.prototype
+        this.emitScalar('Date(' + value + ')');
+      } else if (value.toString &amp;&amp; typeof value === 'object' &amp;&amp; !(value instanceof Array) &amp;&amp; value.toString !== Object.prototype
 .toString) {
         this.emitScalar(value.toString());
       } else if (j$.util.arrayContains(this.seen, value)) {
-        this.emitScalar(&#x27;&#x3c;circular reference: &#x27; + (j$.isArray_(value) ? &#x27;Array&#x27; : &#x27;Object&#x27;) + &#x27;&#x3e;&#x27;);
-      } else if (j$.isArray_(value) || j$.isA_(&#x27;Object&#x27;, value)) {
+        this.emitScalar('&lt;circular reference: ' + (j$.isArray_(value) ? 'Array' : 'Object') + '&gt;');
+      } else if (j$.isArray_(value) || j$.isA_('Object', value)) {
         this.seen.push(value);
         if (j$.isArray_(value)) {
           this.emitArray(value);
@@ -7306,7 +7299,7 @@ times.&#x27; :
   PrettyPrinter.prototype.iterateObject = function(obj, fn) {
     for (var property in obj) {
       if (!Object.prototype.hasOwnProperty.call(obj, property)) { continue; }
-      fn(property, obj.__lookupGetter__ ? (!j$.util.isUndefined(obj.__lookupGetter__(property)) &#x26;&#x26;
+      fn(property, obj.__lookupGetter__ ? (!j$.util.isUndefined(obj.__lookupGetter__(property)) &amp;&amp;
           obj.__lookupGetter__(property) !== null) : false);
     }
   };
@@ -7319,7 +7312,7 @@ times.&#x27; :
   function StringPrettyPrinter() {
     PrettyPrinter.call(this);
 
-    this.string = &#x27;&#x27;;
+    this.string = '';
   }
 
   j$.util.inherit(StringPrettyPrinter, PrettyPrinter);
@@ -7329,24 +7322,24 @@ times.&#x27; :
   };
 
   StringPrettyPrinter.prototype.emitString = function(value) {
-    this.append(&#x27;\&#x27;&#x27; + value + &#x27;\&#x27;&#x27;);
+    this.append('\'' + value + '\'');
   };
 
   StringPrettyPrinter.prototype.emitArray = function(array) {
-    if (this.ppNestLevel_ &#x3e; j$.MAX_PRETTY_PRINT_DEPTH) {
-      this.append(&#x27;Array&#x27;);
+    if (this.ppNestLevel_ &gt; j$.MAX_PRETTY_PRINT_DEPTH) {
+      this.append('Array');
       return;
     }
     var length = Math.min(array.length, j$.MAX_PRETTY_PRINT_ARRAY_LENGTH);
-    this.append(&#x27;[ &#x27;);
-    for (var i = 0; i &#x3c; length; i++) {
-      if (i &#x3e; 0) {
-        this.append(&#x27;, &#x27;);
+    this.append('[ ');
+    for (var i = 0; i &lt; length; i++) {
+      if (i &gt; 0) {
+        this.append(', ');
       }
       this.format(array[i]);
     }
-    if(array.length &#x3e; length){
-      this.append(&#x27;, ...&#x27;);
+    if(array.length &gt; length){
+      this.append(', ...');
     }
 
     var self = this;
@@ -7359,32 +7352,32 @@ times.&#x27; :
       if (first) {
         first = false;
       } else {
-        self.append(&#x27;, &#x27;);
+        self.append(', ');
       }
 
       self.formatProperty(array, property, isGetter);
     });
 
-    this.append(&#x27; ]&#x27;);
+    this.append(' ]');
   };
 
   StringPrettyPrinter.prototype.emitObject = function(obj) {
-    var constructorName = obj.constructor ? j$.fnNameFor(obj.constructor) : &#x27;null&#x27;;
+    var constructorName = obj.constructor ? j$.fnNameFor(obj.constructor) : 'null';
     this.append(constructorName);
 
-    if (this.ppNestLevel_ &#x3e; j$.MAX_PRETTY_PRINT_DEPTH) {
+    if (this.ppNestLevel_ &gt; j$.MAX_PRETTY_PRINT_DEPTH) {
       return;
     }
 
     var self = this;
-    this.append(&#x27;({ &#x27;);
+    this.append('({ ');
     var first = true;
 
     this.iterateObject(obj, function(property, isGetter) {
       if (first) {
         first = false;
       } else {
-        self.append(&#x27;, &#x27;);
+        self.append(', ');
       }
 
       s ...</pre></li>
@@ -7402,30 +7395,30 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">requireMatchers = function (jRequire, j$) {
   var availableMatchers = [
-      &#x27;toBe&#x27;,
-      &#x27;toBeCloseTo&#x27;,
-      &#x27;toBeDefined&#x27;,
-      &#x27;toBeFalsy&#x27;,
-      &#x27;toBeGreaterThan&#x27;,
-      &#x27;toBeGreaterThanOrEqual&#x27;,
-      &#x27;toBeLessThanOrEqual&#x27;,
-      &#x27;toBeLessThan&#x27;,
-      &#x27;toBeNaN&#x27;,
-      &#x27;toBeNull&#x27;,
-      &#x27;toBeTruthy&#x27;,
-      &#x27;toBeUndefined&#x27;,
-      &#x27;toContain&#x27;,
-      &#x27;toEqual&#x27;,
-      &#x27;toHaveBeenCalled&#x27;,
-      &#x27;toHaveBeenCalledWith&#x27;,
-      &#x27;toHaveBeenCalledTimes&#x27;,
-      &#x27;toMatch&#x27;,
-      &#x27;toThrow&#x27;,
-      &#x27;toThrowError&#x27;
+      'toBe',
+      'toBeCloseTo',
+      'toBeDefined',
+      'toBeFalsy',
+      'toBeGreaterThan',
+      'toBeGreaterThanOrEqual',
+      'toBeLessThanOrEqual',
+      'toBeLessThan',
+      'toBeNaN',
+      'toBeNull',
+      'toBeTruthy',
+      'toBeUndefined',
+      'toContain',
+      'toEqual',
+      'toHaveBeenCalled',
+      'toHaveBeenCalledWith',
+      'toHaveBeenCalledTimes',
+      'toMatch',
+      'toThrow',
+      'toThrowError'
     ],
     matchers = {};
 
-  for (var i = 0; i &#x3c; availableMatchers.length; i++) {
+  for (var i = 0; i &lt; availableMatchers.length; i++) {
     var name = availableMatchers[i];
     matchers[name] = jRequire[name](j$);
   }
@@ -7479,7 +7472,7 @@ times.&#x27; :
         }
 
         return {
-          pass: Math.abs(expected - actual) &#x3c; (Math.pow(10, -precision) / 2)
+          pass: Math.abs(expected - actual) &lt; (Math.pow(10, -precision) / 2)
         };
       }
     };
@@ -7555,7 +7548,7 @@ times.&#x27; :
     return {
       compare: function(actual, expected) {
         return {
-          pass: actual &#x3e; expected
+          pass: actual &gt; expected
         };
       }
     };
@@ -7581,7 +7574,7 @@ times.&#x27; :
     return {
       compare: function(actual, expected) {
         return {
-          pass: actual &#x3e;= expected
+          pass: actual &gt;= expected
         };
       }
     };
@@ -7607,7 +7600,7 @@ times.&#x27; :
 
       compare: function(actual, expected) {
         return {
-          pass: actual &#x3c; expected
+          pass: actual &lt; expected
         };
       }
     };
@@ -7633,7 +7626,7 @@ times.&#x27; :
 
       compare: function(actual, expected) {
         return {
-          pass: actual &#x3c;= expected
+          pass: actual &lt;= expected
         };
       }
     };
@@ -7663,9 +7656,9 @@ times.&#x27; :
         };
 
         if (result.pass) {
-          result.message = &#x27;Expected actual not to be NaN.&#x27;;
+          result.message = 'Expected actual not to be NaN.';
         } else {
-          result.message = function() { return &#x27;Expected &#x27; + j$.pp(actual) + &#x27; to be NaN.&#x27;; };
+          result.message = function() { return 'Expected ' + j$.pp(actual) + ' to be NaN.'; };
         }
 
         return result;
@@ -7827,7 +7820,7 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toHaveBeenCalled = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toHaveBeenCalled&#x3e;&#x27;, &#x27;expect(&#x3c;spyObj&#x3e;).toHaveBeenCalled()&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toHaveBeenCalled&gt;', 'expect(&lt;spyObj&gt;).toHaveBeenCalled()');
 
   function toHaveBeenCalled() {
     return {
@@ -7835,18 +7828,18 @@ times.&#x27; :
         var result = {};
 
         if (!j$.isSpy(actual)) {
-          throw new Error(getErrorMsg(&#x27;Expected a spy, but got &#x27; + j$.pp(actual) + &#x27;.&#x27;));
+          throw new Error(getErrorMsg('Expected a spy, but got ' + j$.pp(actual) + '.'));
         }
 
-        if (arguments.length &#x3e; 1) {
-          throw new Error(getErrorMsg(&#x27;Does not take arguments, use toHaveBeenCalledWith&#x27;));
+        if (arguments.length &gt; 1) {
+          throw new Error(getErrorMsg('Does not take arguments, use toHaveBeenCalledWith'));
         }
 
         result.pass = actual.calls.any();
 
         result.message = result.pass ?
-          &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; not to have been called.&#x27; :
-          &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; to have been called.&#x27;;
+          'Expected spy ' + actual.and.identity() + ' not to have been called.' :
+          'Expected spy ' + actual.and.identity() + ' to have been called.';
 
         return result;
       }
@@ -7869,31 +7862,31 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toHaveBeenCalledTimes = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toHaveBeenCalledTimes&#x3e;&#x27;, &#x27;expect(&#x3c;spyObj&#x3e;).toHaveBeenCalledTimes(&#x3c;Number&#x3e;)&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toHaveBeenCalledTimes&gt;', 'expect(&lt;spyObj&gt;).toHaveBeenCalledTimes(&lt;Number&gt;)');
 
   function toHaveBeenCalledTimes() {
     return {
       compare: function(actual, expected) {
         if (!j$.isSpy(actual)) {
-          throw new Error(getErrorMsg(&#x27;Expected a spy, but got &#x27; + j$.pp(actual) + &#x27;.&#x27;));
+          throw new Error(getErrorMsg('Expected a spy, but got ' + j$.pp(actual) + '.'));
         }
 
         var args = Array.prototype.slice.call(arguments, 0),
           result = { pass: false };
 
         if (!j$.isNumber_(expected)){
-          throw new Error(getErrorMsg(&#x27;The expected times failed is a required argument and must be a number.&#x27;));
+          throw new Error(getErrorMsg('The expected times failed is a required argument and must be a number.'));
         }
 
         actual = args[0];
         var calls = actual.calls.count();
-        var timesMessage = expected === 1 ? &#x27;once&#x27; : expected + &#x27; times&#x27;;
+        var timesMessage = expected === 1 ? 'once' : expected + ' times';
         result.pass = calls === expected;
         result.message = result.pass ?
-          &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; not to have been called &#x27; + timesMessage + &#x27;. It was called &#x27; +  calls + &#x27;
-times.&#x27; :
-          &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; to have been called &#x27; + timesMessage + &#x27;. It was called &#x27; +  calls + &#x27; times
-.&#x27;;
+          'Expected spy ' + actual.and.identity() + ' not to have been called ' + timesMessage + '. It was called ' +  calls + '
+times.' :
+          'Expected spy ' + actual.and.identity() + ' to have been called ' + timesMessage + '. It was called ' +  calls + ' times
+.';
         return result;
       }
     };
@@ -7915,7 +7908,7 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toHaveBeenCalledWith = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toHaveBeenCalledWith&#x3e;&#x27;, &#x27;expect(&#x3c;spyObj&#x3e;).toHaveBeenCalledWith(...arguments)&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toHaveBeenCalledWith&gt;', 'expect(&lt;spyObj&gt;).toHaveBeenCalledWith(...arguments)');
 
   function toHaveBeenCalledWith(util, customEqualityTesters) {
     return {
@@ -7926,22 +7919,22 @@ times.&#x27; :
           result = { pass: false };
 
         if (!j$.isSpy(actual)) {
-          throw new Error(getErrorMsg(&#x27;Expected a spy, but got &#x27; + j$.pp(actual) + &#x27;.&#x27;));
+          throw new Error(getErrorMsg('Expected a spy, but got ' + j$.pp(actual) + '.'));
         }
 
         if (!actual.calls.any()) {
-          result.message = function() { return &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; to have been called with &#x27; + j$.pp(expectedArgs
-) + &#x27; but it was never called.&#x27;; };
+          result.message = function() { return 'Expected spy ' + actual.and.identity() + ' to have been called with ' + j$.pp(expectedArgs
+) + ' but it was never called.'; };
           return result;
         }
 
         if (util.contains(actual.calls.allArgs(), expectedArgs, customEqualityTesters)) {
           result.pass = true;
-          result.message = function() { return &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; not to have been called with &#x27; + j$.pp
-(expectedArgs) + &#x27; but it was.&#x27;; };
+          result.message = function() { return 'Expected spy ' + actual.and.identity() + ' not to have been called with ' + j$.pp
+(expectedArgs) + ' but it was.'; };
         } else {
-          result.message = function() { return &#x27;Expected spy &#x27; + actual.and.identity() + &#x27; to have been called with &#x27; + j$.pp(expectedArgs
-) + &#x27; but actual calls were &#x27; + j$.pp(actual.calls.allArgs()).replace(/^\[ | \]$/g, &#x27;&#x27;) + &#x27;.&#x27;; };
+          result.message = function() { return 'Expected spy ' + actual.and.identity() + ' to have been called with ' + j$.pp(expectedArgs
+) + ' but actual calls were ' + j$.pp(actual.calls.allArgs()).replace(/^\[ | \]$/g, '') + '.'; };
         }
 
         return result;
@@ -7965,13 +7958,13 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toMatch = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toMatch&#x3e;&#x27;, &#x27;expect(&#x3c;expectation&#x3e;).toMatch(&#x3c;string&#x3e; || &#x3c;regexp&#x3e;)&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toMatch&gt;', 'expect(&lt;expectation&gt;).toMatch(&lt;string&gt; || &lt;regexp&gt;)');
 
   function toMatch() {
     return {
       compare: function(actual, expected) {
-        if (!j$.isString_(expected) &#x26;&#x26; !j$.isA_(&#x27;RegExp&#x27;, expected)) {
-          throw new Error(getErrorMsg(&#x27;Expected is not a String or a RegExp&#x27;));
+        if (!j$.isString_(expected) &amp;&amp; !j$.isA_('RegExp', expected)) {
+          throw new Error(getErrorMsg('Expected is not a String or a RegExp'));
         }
 
         var regexp = new RegExp(expected);
@@ -7999,7 +7992,7 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toThrow = function (j$) {
 
-  var getErrorMsg = j$.formatErrorMsg(&#x27;&#x3c;toThrow&#x3e;&#x27;, &#x27;expect(function() {&#x3c;expectation&#x3e;}).toThrow()&#x27;);
+  var getErrorMsg = j$.formatErrorMsg('&lt;toThrow&gt;', 'expect(function() {&lt;expectation&gt;}).toThrow()');
 
   function toThrow(util) {
     return {
@@ -8008,8 +8001,8 @@ times.&#x27; :
           threw = false,
           thrown;
 
-        if (typeof actual != &#x27;function&#x27;) {
-          throw new Error(getErrorMsg(&#x27;Actual is not a Function&#x27;));
+        if (typeof actual != 'function') {
+          throw new Error(getErrorMsg('Actual is not a Function'));
         }
 
         try {
@@ -8020,23 +8013,23 @@ times.&#x27; :
         }
 
         if (!threw) {
-          result.message = &#x27;Expected function to throw an exception.&#x27;;
+          result.message = 'Expected function to throw an exception.';
           return result;
         }
 
         if (arguments.length == 1) {
           result.pass = true;
-          result.message = function() { return &#x27;Expected function not to throw, but it threw &#x27; + j$.pp(thrown) + &#x27;.&#x27;; };
+          result.message = function() { return 'Expected function not to throw, but it threw ' + j$.pp(thrown) + '.'; };
 
           return result;
         }
 
         if (util.equals(thrown, expected)) {
           result.pass = true;
-          result.message = function() { return &#x27;Expected function not to throw &#x27; + j$.pp(expected) + &#x27;.&#x27;; };
+          result.message = function() { return 'Expected function not to throw ' + j$.pp(expected) + '.'; };
         } else {
-          result.message = function() { return &#x27;Expected function to throw &#x27; + j$.pp(expected) + &#x27;, but it threw &#x27; +  j$.pp(thrown
-) + &#x27;.&#x27;; };
+          result.message = function() { return 'Expected function to throw ' + j$.pp(expected) + ', but it threw ' +  j$.pp(thrown
+) + '.'; };
         }
 
         return result;
@@ -8060,8 +8053,8 @@ times.&#x27; :
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toThrowError = function (j$) {
 
-  var getErrorMsg =  j$.formatErrorMsg(&#x27;&#x3c;toThrowError&#x3e;&#x27;, &#x27;expect(function() {&#x3c;expectation&#x3e;}).toThrowError(&#x3c;ErrorConstructor&#x3e;, &#x3c;message
-&#x3e;)&#x27;);
+  var getErrorMsg =  j$.formatErrorMsg('&lt;toThrowError&gt;', 'expect(function() {&lt;expectation&gt;}).toThrowError(&lt;ErrorConstructor&gt;, &lt;message
+&gt;)');
 
   function toThrowError () {
     return {
@@ -8071,8 +8064,8 @@ times.&#x27; :
           fail = {pass: false},
           thrown;
 
-        if (typeof actual != &#x27;function&#x27;) {
-          throw new Error(getErrorMsg(&#x27;Actual is not a Function&#x27;));
+        if (typeof actual != 'function') {
+          throw new Error(getErrorMsg('Actual is not a Function'));
         }
 
         var errorMatcher = getMatcher.apply(null, arguments);
@@ -8085,29 +8078,29 @@ times.&#x27; :
         }
 
         if (!threw) {
-          fail.message = &#x27;Expected function to throw an Error.&#x27;;
+          fail.message = 'Expected function to throw an Error.';
           return fail;
         }
 
         if (!(thrown instanceof Error)) {
-          fail.message = function() { return &#x27;Expected function to throw an Error, but it threw &#x27; + j$.pp(thrown) + &#x27;.&#x27;; };
+          fail.message = function() { return 'Expected function to throw an Error, but it threw ' + j$.pp(thrown) + '.'; };
           return fail;
         }
 
         if (errorMatcher.hasNoSpecifics()) {
-          pass.message = &#x27;Expected function not to throw an Error, but it threw &#x27; + j$.fnNameFor(thrown) + &#x27;.&#x27;;
+          pass.message = 'Expected function not to throw an Error, but it threw ' + j$.fnNameFor(thrown) + '.';
           return pass;
         }
 
         if (errorMatcher.matches(thrown)) {
           pass.message = function() {
-            return &#x27;Expected function not to throw &#x27; + errorMatcher.errorTypeDescription + errorMatcher.messageDescription() + &#x27;.&#x27;;
+            return 'Expected function not to throw ' + errorMatcher.errorTypeDescription + errorMatcher.messageDescription() + '.';
           };
           return pass;
         } else {
           fail.message = function() {
-            return &#x27;Expected function to throw &#x27; + errorMatcher.errorTypeDescription + errorMatcher.messageDescription() +
-              &#x27;, but it threw &#x27; + errorMatcher.thrownDescription(thrown) + &#x27;.&#x27;;
+            return 'Expected function to throw ' + errorMatcher.errorTypeDescription + errorMatcher.messageDescription() +
+              ', but it threw ' + errorMatcher.thrownDescription(thrown) + '.';
           };
           return fail;
         }
@@ -8124,24 +8117,24 @@ times.&#x27; :
           errorType = expected;
           expected = null;
         }
-      } else if (arguments.length &#x3e; 2) {
+      } else if (arguments.length &gt; 2) {
         errorType = arguments[1];
         expected = arguments[2];
         if (!isAnErrorType(errorType)) {
-          throw new Error(getErrorMsg(&#x27;Expected error type is not an Error.&#x27;));
+          throw new Error(getErrorMsg('Expected error type is not an Error.'));
         }
       }
 
-      if (expected &#x26;&#x26; !isStringOrRegExp(expected)) {
+      if (expected &amp;&amp; !isStringOrRegExp(expected)) {
         if (errorType) {
-          throw new Error(getErrorMsg(&#x27;Expected error message is not a string or RegExp.&#x27;));
+          throw new Error(getErrorMsg('Expected error message is not a string or RegExp.'));
         } else {
-          throw new Error(getErrorMsg(&#x27;Expected is not an Error, string, or RegExp.&#x27;));
+          throw new Error(getErrorMsg('Expected is not an Error, string, or RegExp.'));
         }
       }
 
       function messageMatch(message) {
-        if (typeof expected == &#x27;string&#x27;) {
+        if (typeof expected == 'string') {
           return expected == message;
         } else {
           return expected.test(message);
@@ -8149,42 +8142,42 @@ times.&#x27; :
       }
 
       return {
-        errorTypeDescription: errorType ? j$.fnNameFor(errorType) : &#x27;an exception&#x27;,
+        errorTypeDescription: errorType ? j$.fnNameFor(errorType) : 'an exception',
         thrownDescription: function(thrown) {
-          var thrownName = errorType ? j$.fnNameFor(thrown.constructor) : &#x27;an exception&#x27;,
-              thrownMessage = &#x27;&#x27;;
+          var thrownName = errorType ? j$.fnNameFor(thrown.constructor) : 'an exception',
+              thrownMessage = '';
 
           if (expected) {
-            thrownMessage = &#x27; with message &#x27; + j$.pp(thrown.message);
+            thrownMessage = ' with message ' + j$.pp(thrown.message);
           }
 
           return thrownName + thrownMessage;
         },
         messageDescription: function() {
           if (expected === null) {
-            return &#x27;&#x27;;
+            return '';
           } else if (expected instanceof RegExp) {
-            return &#x27; with a message matching &#x27; + j$.pp(expected);
+            return ' with a message matching ' + j$.pp(expected);
           } else {
-            return &#x27; with message &#x27; + j$.pp(expected);
+            return ' with message ' + j$.pp(expected);
           }
         },
         hasNoSpecifics: function() {
-          return expected === null &#x26;&#x26; errorType === null;
+          return expected === null &amp;&amp; errorType === null;
         },
         matches: function(error) {
-          return (errorType === null || error instanceof errorType) &#x26;&#x26;
+          return (errorType === null || error instanceof errorType) &amp;&amp;
             (expected === null || messageMatch(error.message));
         }
       };
     }
 
     function isStringOrRegExp(potential) {
-      return potential instanceof RegExp || (typeof potential == &#x27;string&#x27;);
+      return potential instanceof RegExp || (typeof potential == 'string');
     }
 
     function isAnErrorType(type) {
-      if (typeof type !== &#x27;function&#x27;) {
+      if (typeof type !== 'function') {
         return false;
       }
 
@@ -8218,14 +8211,14 @@ times.&#x27; :
     if (!str) {
       return str;
     }
-    return str.replace(/&#x26;/g, &#x27;&#x26;amp;&#x27;)
-      .replace(/&#x3c;/g, &#x27;&#x26;lt;&#x27;)
-      .replace(/&#x3e;/g, &#x27;&#x26;gt;&#x27;);
+    return str.replace(/&amp;/g, '&amp;amp;')
+      .replace(/&lt;/g, '&amp;lt;')
+      .replace(/&gt;/g, '&amp;gt;');
   };
 
   util.argsToArray = function(args) {
     var arrayOfArgs = [];
-    for (var i = 0; i &#x3c; args.length; i++) {
+    for (var i = 0; i &lt; args.length; i++) {
       arrayOfArgs.push(args[i]);
     }
     return arrayOfArgs;
@@ -8246,7 +8239,7 @@ times.&#x27; :
   };
 
   util.clone = function(obj) {
-    if (Object.prototype.toString.apply(obj) === &#x27;[object Array]&#x27;) {
+    if (Object.prototype.toString.apply(obj) === '[object Array]') {
       return obj.slice();
     }
 
@@ -8275,7 +8268,7 @@ times.&#x27; :
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">version = function () {
-  return &#x27;2.5.2&#x27;;
+  return '2.5.2';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -8291,3 +8284,4 @@ times.&#x27; :
     ]
 </div>
 </div>
+</body></html>
