@@ -21,11 +21,25 @@
 ```json
 
 {
-    "bugs": {
-        "url": "https://github.com/jasmine/jasmine/issues"
+    "name": "jasmine-core",
+    "license": "MIT",
+    "version": "2.5.2",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jasmine/jasmine.git"
     },
-    "dependencies": {},
+    "keywords": [
+        "test",
+        "jasmine",
+        "tdd",
+        "bdd"
+    ],
+    "scripts": {
+        "test": "grunt jshint execSpecsInNode"
+    },
     "description": "Official packaging of Jasmine's core files for use by Node.js projects.",
+    "homepage": "http://jasmine.github.io",
+    "main": "./lib/jasmine-core.js",
     "devDependencies": {
         "glob": "~7.0.5",
         "grunt": "^1.0.1",
@@ -38,40 +52,7 @@
         "load-grunt-tasks": "^0.4.0",
         "shelljs": "^0.7.0",
         "temp": "~0.8.1"
-    },
-    "directories": {},
-    "dist": {
-        "shasum": "6f61bd79061e27f43e6f9355e44b3c6cab6ff297",
-        "tarball": "https://registry.npmjs.org/jasmine-core/-/jasmine-core-2.5.2.tgz"
-    },
-    "gitHead": "6816bc4252fe40ea2cf6a16b4aac7ddce6922095",
-    "homepage": "http://jasmine.github.io",
-    "keywords": [
-        "test",
-        "jasmine",
-        "tdd",
-        "bdd"
-    ],
-    "license": "MIT",
-    "main": "./lib/jasmine-core.js",
-    "maintainers": [
-        {
-            "name": "dwfrank"
-        },
-        {
-            "name": "slackersoft"
-        }
-    ],
-    "name": "jasmine-core",
-    "optionalDependencies": {},
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/jasmine/jasmine.git"
-    },
-    "scripts": {
-        "test": "grunt jshint execSpecsInNode"
-    },
-    "version": "2.5.2"
+    }
 }
 ```
 
